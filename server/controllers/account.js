@@ -22,7 +22,7 @@ export const login = async (req, res) => {
         if (login.length > 0) {
             res.status(200).json(login[0]);
         } else {
-            res.status(404).json({ message: "User not found." });
+            res.status(404).json({ message: "User not found" });
         }
     } catch (error) {
         res.status(404).json({ message: error.message });

@@ -1,24 +1,16 @@
 import * as api from '../api';
 
-import { REGISTER, LOGIN } from '../constants/actionTypes.js';
-
-export const register = (registerInfo) => async (dispatch) => {
-    try {
-        const { data } = await api.register(registerInfo);
-        console.log(data);
-        //dispatch({ type: REGISTER, payload: data });
-    } catch (error) {
-        console.log(error);
-    }
-}
+import { LOGIN } from '../constants/actionTypes.js';
 
 export const login = (loginInfo) => async (dispatch) => {
     try {
-        const { data, status } = await api.login(loginInfo);
-        console.log(data);
-        console.log(status);
+        const { data } = await api.login(loginInfo);
         dispatch({ type: LOGIN, payload: data });
     } catch (error) {
-        console.log(error);
+        if (error.response.status === 404) {
+            dispatch({ type: LOGIN, payload: { message: "User not found" }});
+        } else {
+            console.log(error);
+        }
     }
 }

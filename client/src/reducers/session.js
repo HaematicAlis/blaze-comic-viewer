@@ -1,6 +1,6 @@
 import { LOGIN } from '../constants/actionTypes.js';
 
-const account = (session = { id: 0 }, action) => {
+const session = (session = { message: 'Not logged in' }, action) => {
     switch (action.type) {
         case LOGIN:
             return action.payload;
@@ -9,4 +9,4 @@ const account = (session = { id: 0 }, action) => {
     }
 }
 
-export default account;
+export default session;

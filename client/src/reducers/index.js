@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 
-import account from './account.js';
+import session from './session.js';
 
-export default combineReducers({ account });
+export default combineReducers({ session });
