@@ -1,9 +1,11 @@
-import { LOGIN } from '../constants/actionTypes.js';
+import { LOGIN, LOGOUT } from '../constants/actionTypes.js';
 
-const session = (session = { message: 'Not logged in' }, action) => {
+const session = (session = { id: 0, username: '', message: 'Not logged in' }, action) => {
     switch (action.type) {
         case LOGIN:
             return action.payload;
+        case LOGOUT:
+            return { id: 0, username: '', message: 'You have been logged out' };
         default:
             return session;
     }

@@ -20,7 +20,7 @@ export const login = async (req, res) => {
     try {
         const login = await User.find({ username: loginInfo.username, password: loginInfo.password });
         if (login.length > 0) {
-            res.status(200).json(login[0]);
+            res.status(200).json({ id: login[0]._id, username: login[0].username, message: `Logged in as ${login[0].username}` });
         } else {
             res.status(404).json({ message: "User not found" });
         }

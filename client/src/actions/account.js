@@ -1,6 +1,6 @@
 import * as api from '../api';
 
-import { LOGIN } from '../constants/actionTypes.js';
+import { LOGIN, LOGOUT } from '../constants/actionTypes.js';
 
 export const login = (loginInfo) => async (dispatch) => {
     try {
@@ -12,5 +12,13 @@ export const login = (loginInfo) => async (dispatch) => {
         } else {
             console.log(error);
         }
+    }
+}
+
+export const logout = () => async (dispatch) => {
+    try {
+        dispatch({ type: LOGOUT, payload: null });
+    } catch (error) {
+        console.log(error);
     }
 }
