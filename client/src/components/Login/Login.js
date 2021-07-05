@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
+import { cookies } from '../../index.js';
 import { login } from '../../actions/account.js';
 
 const Login = () => {
@@ -19,7 +20,11 @@ const Login = () => {
     const doLogin = () => {
         dispatch(login(loginInfo))
         .then((response) => {
-            history.push('/shelf');
+            if (cookies.get('ID')) {
+                console.log(cookies.get('ID'));
+                console.log(cookies.get('Username'));
+                history.push('/shelf');
+            }
         });
     }
 

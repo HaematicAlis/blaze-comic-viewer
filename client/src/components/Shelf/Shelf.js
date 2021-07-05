@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { cookies } from '../../index.js';
 import { logout } from '../../actions/account.js';
 
 const Shelf = () => {
@@ -16,7 +17,11 @@ const Shelf = () => {
 
     const doLogout = () => {
         if (session.username) {
-            dispatch(logout());
+            dispatch(logout())
+            .then((response) => {
+                cookies.remove('ID');
+                cookies.remove('Username');
+            });
         }
     }
 

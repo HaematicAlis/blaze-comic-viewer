@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
+import { cookies } from '../../index.js'
 import { register } from '../../api';
+import { reload } from '../../actions/account.js';
 
 const Register = () => {
     const [registerInfo, setRegisterInfo] = useState({ username: '', password: '' });
     const [message, setMessage] = useState("");
     const session = useSelector((state) => state.session);
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    useEffect(() => {
+        if (cookies.get('Username')) {
+            dispatch(reload({ id: cookies.get('ID'), username: cookies.get('Username') }))
+            .then((response) => {
+                history.push('/shelf');
+            });
+        }
+    }, [dispatch, history]);
 
     useEffect(() => {
         setMessage(session.message);
