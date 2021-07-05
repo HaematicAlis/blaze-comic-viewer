@@ -44,7 +44,7 @@ const Register = () => {
         }
 
         try {
-            const { data } = await register(registerInfo);
+            const { data } = await register({ username: registerInfo.username, password: registerInfo.password, email: registerInfo.email });
             setMessage(`${data.username} has registered`);
         } catch (error) {
             setMessage(error.response.data.message);

@@ -6,15 +6,11 @@ import { cookies } from '../index.js';
 export const login = (loginInfo) => async (dispatch) => {
     try {
         const { data } = await api.login(loginInfo);
-        cookies.set('ID', data.id);
-        cookies.set('Username', data.username);
+        cookies.set('ID', data.id, { secure: true });
+        cookies.set('Username', data.username, { secure: true });
         dispatch({ type: LOGIN, payload: data });
     } catch (error) {
-        if (error.response.status === 404) {
-            dispatch({ type: LOGIN, payload: { message: "User not found" }});
-        } else {
-            console.log(error);
-        }
+        dispatch({ type: LOGIN, payload: { message: error.response.data.message }});
     }
 }
 

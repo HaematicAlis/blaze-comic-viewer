@@ -21,8 +21,6 @@ const Login = () => {
         dispatch(login(loginInfo))
         .then((response) => {
             if (cookies.get('ID')) {
-                console.log(cookies.get('ID'));
-                console.log(cookies.get('Username'));
                 history.push('/shelf');
             }
         });
@@ -34,7 +32,7 @@ const Login = () => {
             Username:&nbsp;
             <input type="text" id="loginUsername" onChange={(e) => setLoginInfo({ ...loginInfo, username: e.target.value })}></input><br></br>
             Password:&nbsp;
-            <input type="text" id="loginPassword" onChange={(e) => setLoginInfo({ ...loginInfo, password: e.target.value })}></input><br></br>
+            <input type="password" id="loginPassword" onChange={(e) => setLoginInfo({ ...loginInfo, password: e.target.value })}></input><br></br>
             <button type="button" id="loginButton" onClick={doLogin}>Login</button><br></br>
             <Link to="/"><p>Don't have an account? Click here to register.</p></Link><br></br>
             <div id="loginStatus">{message}</div>
