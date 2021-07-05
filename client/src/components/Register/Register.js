@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import validator from 'validator';
 
 import { cookies } from '../../index.js'
 import { register } from '../../api';
 import { reload } from '../../actions/account.js';
 
+import './Register.css';
+
 const Register = () => {
-    const [registerInfo, setRegisterInfo] = useState({ username: '', password: '' });
+    const [registerInfo, setRegisterInfo] = useState({ username: '', password: '', email: '' });
     const [message, setMessage] = useState("");
     const session = useSelector((state) => state.session);
     const dispatch = useDispatch();
@@ -27,24 +30,47 @@ const Register = () => {
     }, [session]);
 
     const doRegister = async () => {
-        const { data, status } = await register(registerInfo);
-        if (status === 201) {
+        if (registerInfo.username === '' || registerInfo.password === '' || registerInfo.confirmPassword === '' || registerInfo.email === '') {
+            setMessage('Must fill out all fields');
+            return;
+        }
+        if (registerInfo.password !== registerInfo.confirmPassword) {
+            setMessage('Passwords do not match');
+            return;
+        }
+        if (!validator.isEmail(registerInfo.email)) {
+            setMessage('Invalid email');
+            return;
+        }
+
+        try {
+            const { data } = await register(registerInfo);
             setMessage(`${data.username} has registered`);
-        } else {
-            setMessage("Error during registration");
+        } catch (error) {
+            setMessage(error.response.data.message);
         }
     }
 
     return (
-        <div>
+        <div id="outerContainer">
             <h1>Register</h1>
-            Username:&nbsp;
-            <input type="text" id="username" onChange={(e) => setRegisterInfo({ ...registerInfo, username: e.target.value })}></input><br></br>
-            Password:&nbsp;
-            <input type="text" id="password" onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}></input><br></br>
-            <button type="button" id="registerButton" onClick={doRegister}>Register</button><br></br>
-            <Link to="/login"><p>Click here to login.</p></Link><br></br>
-            <div id="loginStatus">{message}</div>
+            <div id="registerLabels">
+                <p>Username:&nbsp;</p>
+                <p>Password:&nbsp;</p>
+                <p>Confirm Password:&nbsp;</p>
+                <p>Email:&nbsp;</p>
+            </div>
+            <div id="registerFields">
+                <input type="text" id="registerUsername" onChange={(e) => setRegisterInfo({ ...registerInfo, username: e.target.value })}></input><br></br>
+                <input type="password" id="registerPassword" onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}></input><br></br>
+                <input type="password" id="registerConfirmPassword" onChange={(e) => setRegisterInfo({ ...registerInfo, confirmPassword: e.target.value })}></input><br></br>
+                <input type="text" id="registerEmail" onChange={(e) => setRegisterInfo({ ...registerInfo, email: e.target.value })}></input><br></br>
+            </div>
+            <div id="submitBox">
+                <button type="button" id="registerButton" onClick={doRegister}>Register</button><br></br>
+                <Link to="/login"><p>Click here to login.</p></Link><br></br>
+                <div id="registerStatus">{message}</div>
+            </div>
         </div>
     );
 }

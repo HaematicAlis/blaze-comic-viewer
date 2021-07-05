@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import User from '../models/user.js';
 
 export const register = async (req, res) => {
@@ -7,8 +6,16 @@ export const register = async (req, res) => {
     const newUser = new User(registerInfo);
 
     try {
-        await newUser.save();
-        res.status(201).json(newUser);
+        const existingUser = await User.find({ username: newUser.username });
+        const existingEmail = await User.find({ email: newUser.email });
+        if (existingUser.length > 0) {
+            res.status(409).json({ message: "Username already exists" });
+        } else if (existingEmail.length > 0) {
+            res.status(409).json({ message: "Email is already is use" });
+        } else {
+            await newUser.save();
+            res.status(201).json(newUser);
+        }
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
