@@ -7,12 +7,12 @@ import { cookies } from '../../index.js'
 import { register } from '../../api';
 import { reload } from '../../actions/account.js';
 
+import { Button, Paper, Container, TextField, Typography, Grid } from '@material-ui/core';
 import useStyles from './styles.js';
-import { Button, Paper, Container, TextField, Typography } from '@material-ui/core';
 
 const Register = () => {
-    const [registerInfo, setRegisterInfo] = useState({ username: "", password: "", confirmPassword: "", email: "" });
-    const [message, setMessage] = useState({ username: "", password: "", confirmPassword: "", email: "", status: "" });
+    const [registerInfo, setRegisterInfo] = useState({ username: '', password: '', confirmPassword: '', email: '' });
+    const [message, setMessage] = useState({ username: '', password: '', confirmPassword: '', email: '', status: '' });
     const dispatch = useDispatch();
     const classes = useStyles();
     const history = useHistory();
@@ -20,7 +20,7 @@ const Register = () => {
     useEffect(() => {
         if (cookies.get('Username')) {
             dispatch(reload({ id: cookies.get('ID'), username: cookies.get('Username') }))
-            .then((response) => {
+            .then(() => {
                 history.push('/shelf');
             });
         }
@@ -75,20 +75,46 @@ const Register = () => {
     }
 
     return (
-        <Container m={5} maxWidth="sm" className={classes.outerContainer}>
-            <Paper elevation={5}>
-                <Typography variant="h4">Register</Typography>
-                <div className={classes.registerFields}>
-                    <TextField label="Username" className={classes.registerField} error={message.username ? true : false} helperText={message.username ? message.username : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, username: e.target.value })}></TextField>
-                    <TextField label="Password" error={message.password ? true : false} helperText={message.password ? message.password : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}></TextField>
-                    <TextField label="Confirm Password" error={message.confirmPassword ? true : false} helperText={message.passwordConfirm ? message.passwordConfirm : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, confirmPassword: e.target.value })}></TextField>
-                    <TextField label="Email" error={message.email ? true : false} helperText={message.email ? message.email : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, email: e.target.value })}></TextField>
-                </div>
-                <div className={classes.submitBox}>
+        <Container maxWidth="xs" className={classes.outerContainer}>
+            <Paper className={classes.registerPaper} elevation={5}>
+                <Grid container className={classes.registerFields} spacing={2} justify="center" direction="column">
+                    <Grid item>
+                        <Typography variant="h3" gutterBottom>Register</Typography>
+                    </Grid>
+                    <Grid item>
+                        <TextField label="Username" variant="outlined" size="small"
+                            error={message.username ? true : false}
+                            helperText={message.username ? message.username : ""}
+                            onChange={(e) => setRegisterInfo({ ...registerInfo, username: e.target.value })}>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                        <TextField label="Password" variant="outlined" size="small"
+                            error={message.password ? true : false}
+                            helperText={message.password ? message.password : ""}
+                            onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                        <TextField label="Confirm Password" variant="outlined" size="small"
+                            error={message.confirmPassword ? true : false}
+                            helperText={message.confirmPassword ? message.confirmPassword : ""}
+                            onChange={(e) => setRegisterInfo({ ...registerInfo, confirmPassword: e.target.value })}>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                        <TextField label="Email" variant="outlined" size="small"
+                            error={message.email ? true : false}
+                            helperText={message.email ? message.email : ""}
+                            onChange={(e) => setRegisterInfo({ ...registerInfo, email: e.target.value })}>
+                        </TextField>
+                    </Grid>
+                </Grid>
+                <Container className={classes.submitBox}>
                     <Button variant="contained" color="primary" onClick={validateRegister}>Register</Button>
                     <Link to="/login"><p>Click here to login.</p></Link><br></br>
-                    <div id="registerStatus">{message.status}</div>
-                </div>
+                    <Typography variant="body1">{message.status}</Typography>
+                </Container>
             </Paper>
         </Container>
     );

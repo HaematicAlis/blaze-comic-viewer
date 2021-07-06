@@ -4,12 +4,21 @@ import green from '@material-ui/core/colors/green';
 const theme = createMuiTheme({
     typography: {
         fontFamily: [
-            'Revalia',
-            'cursive',
+            'Roboto',
+            'sans-serif',
         ].join(','),     
     },
     palette: {
         primary: green,
+    },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                body: {
+                    backgroundColor: '#ddd',
+                },
+            },
+        },
     },
 });
 

@@ -5,6 +5,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import Cookies from 'universal-cookie';
 import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import App from './App.js';
 import reducers from './reducers';
@@ -17,6 +18,7 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)));
 ReactDOM.render(
     <Provider store={store}>
         <ThemeProvider theme={theme}>
+            <CssBaseline />
             <App />
         </ThemeProvider>
     </Provider>,

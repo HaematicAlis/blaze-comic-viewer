@@ -1,23 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
     outerContainer: {
-        'text-align': 'center',
-        'font-family': 'revalia',
-    },
-    registerLabels: {
-        'display': 'inline-block',
-        'text-align': 'right',
-        'font-family': 'revalia',
+        textAlign: 'center',
+        fontFamily: 'Roboto',
+        backgroundColor: theme.palette.background,
+        padding: theme.spacing(6, 0, 8),
     },
     registerFields: {
-        'display': 'inline-block',
-    },
-    registerField: {
-        'padding': '0px',
+        padding: theme.spacing(2),
     },
     submitBox: {
-        'margin': '0 auto',
-        'width': '200px',
+        marginTop: theme.spacing(3),
+        margin: '0 auto',
+        width: '200px',
     }
 }));
