@@ -111,8 +111,8 @@ const Register = () => {
                     </Grid>
                 </Grid>
                 <Container className={classes.submitBox}>
-                    <Button variant="contained" color="primary" onClick={validateRegister}>Register</Button>
-                    <Link to="/login"><Typography className={classes.submitBox} variant="subtitle2">Click here to login.</Typography></Link>
+                    <Button className={classes.registerButton} variant="contained" color="primary" onClick={validateRegister}>Register</Button>
+                    <Link to="/"><Typography variant="subtitle2">Click here to login.</Typography></Link>
                     <Typography variant="body1">{message.status}</Typography>
                 </Container>
             </Paper>

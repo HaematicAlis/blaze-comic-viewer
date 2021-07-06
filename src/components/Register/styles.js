@@ -12,4 +12,7 @@ export default makeStyles((theme) => ({
     submitBox: {
         padding: theme.spacing(3),
     },
+    registerButton: {
+        marginBottom: theme.spacing(3),
+    },
 }));

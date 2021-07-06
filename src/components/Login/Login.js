@@ -4,18 +4,27 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import { cookies } from '../../index.js';
-import { login } from '../../actions/account.js';
+import { login, reload } from '../../actions/account.js';
 
 import { Paper, Container, Grid, Typography, Button, TextField } from '@material-ui/core';
 import useStyles from './styles.js';
 
 const Login = () => {
     const [loginInfo, setLoginInfo] = useState({ username: '', password: '' });
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState('');
     const session = useSelector((state) => state.session);
     const dispatch = useDispatch();
     const classes = useStyles();
     const history = useHistory();
+
+    useEffect(() => {
+        if (cookies.get('Username')) {
+            dispatch(reload({ id: cookies.get('ID'), username: cookies.get('Username') }))
+            .then(() => {
+                history.push('/shelf');
+            });
+        }
+    }, [dispatch, history]);
 
     useEffect(() => {
         setMessage(session.message);
@@ -49,8 +58,8 @@ const Login = () => {
                     </Grid>
                 </Grid>
                 <Container className={classes.submitBox}>
-                    <Button variant="contained" color="primary" onClick={doLogin}>Login</Button>
-                    <Link to="/"><Typography className={classes.submitBox} variant="subtitle2">Don't have an account? Click here to register.</Typography></Link>
+                    <Button className={classes.loginButton} variant="contained" color="primary" onClick={doLogin}>Login</Button>
+                    <Link to="/register"><Typography variant="subtitle2">Don't have an account? Click here to register.</Typography></Link>
                     <Typography variant="body1">{message}</Typography>
                 </Container>
             </Paper>
