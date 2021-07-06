@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
         fontFamily: 'Roboto',
         padding: theme.spacing(6, 0, 8),
     },
-    registerFields: {
+    loginFields: {
         padding: theme.spacing(2),
     },
     submitBox: {

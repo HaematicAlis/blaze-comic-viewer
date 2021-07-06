@@ -75,8 +75,8 @@ const Register = () => {
     }
 
     return (
-        <Container maxWidth="xs" className={classes.outerContainer}>
-            <Paper className={classes.registerPaper} elevation={5}>
+        <Container className={classes.outerContainer} maxWidth="xs">
+            <Paper elevation={5}>
                 <Grid container className={classes.registerFields} spacing={2} justify="center" direction="column">
                     <Grid item>
                         <Typography variant="h3" gutterBottom>Register</Typography>
@@ -89,14 +89,14 @@ const Register = () => {
                         </TextField>
                     </Grid>
                     <Grid item>
-                        <TextField label="Password" variant="outlined" size="small"
+                        <TextField label="Password" variant="outlined" type="password" size="small"
                             error={message.password ? true : false}
                             helperText={message.password ? message.password : ""}
                             onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}>
                         </TextField>
                     </Grid>
                     <Grid item>
-                        <TextField label="Confirm Password" variant="outlined" size="small"
+                        <TextField label="Confirm Password" variant="outlined" type="password" size="small"
                             error={message.confirmPassword ? true : false}
                             helperText={message.confirmPassword ? message.confirmPassword : ""}
                             onChange={(e) => setRegisterInfo({ ...registerInfo, confirmPassword: e.target.value })}>
@@ -112,7 +112,7 @@ const Register = () => {
                 </Grid>
                 <Container className={classes.submitBox}>
                     <Button variant="contained" color="primary" onClick={validateRegister}>Register</Button>
-                    <Link to="/login"><p>Click here to login.</p></Link><br></br>
+                    <Link to="/login"><Typography className={classes.submitBox} variant="subtitle2">Click here to login.</Typography></Link>
                     <Typography variant="body1">{message.status}</Typography>
                 </Container>
             </Paper>

@@ -6,11 +6,15 @@ import { useHistory } from 'react-router-dom';
 import { cookies } from '../../index.js';
 import { login } from '../../actions/account.js';
 
+import { Paper, Container, Grid, Typography, Button, TextField } from '@material-ui/core';
+import useStyles from './styles.js';
+
 const Login = () => {
     const [loginInfo, setLoginInfo] = useState({ username: '', password: '' });
     const [message, setMessage] = useState("");
     const session = useSelector((state) => state.session);
     const dispatch = useDispatch();
+    const classes = useStyles();
     const history = useHistory();
 
     useEffect(() => {
@@ -27,16 +31,30 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
-            Username:&nbsp;
-            <input type="text" id="loginUsername" onChange={(e) => setLoginInfo({ ...loginInfo, username: e.target.value })}></input><br></br>
-            Password:&nbsp;
-            <input type="password" id="loginPassword" onChange={(e) => setLoginInfo({ ...loginInfo, password: e.target.value })}></input><br></br>
-            <button type="button" id="loginButton" onClick={doLogin}>Login</button><br></br>
-            <Link to="/"><p>Don't have an account? Click here to register.</p></Link><br></br>
-            <div id="loginStatus">{message}</div>
-        </div>
+        <Container className={classes.outerContainer} maxWidth="xs">
+            <Paper elevation={5}>
+                <Grid container spacing={3} justify="center" direction="column">
+                    <Grid item className={classes.loginFields}>
+                        <Typography variant="h3" gutterBottom>Login</Typography>
+                    </Grid>
+                    <Grid item>
+                        <TextField label="Username" variant="outlined" size="small"
+                            onChange={(e) => setLoginInfo({ ...loginInfo, username: e.target.value })}>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                        <TextField label="Password" variant="outlined" type="password" size="small"
+                            onChange={(e) => setLoginInfo({ ...loginInfo, password: e.target.value })}>
+                        </TextField>
+                    </Grid>
+                </Grid>
+                <Container className={classes.submitBox}>
+                    <Button variant="contained" color="primary" onClick={doLogin}>Login</Button>
+                    <Link to="/"><Typography className={classes.submitBox} variant="subtitle2">Don't have an account? Click here to register.</Typography></Link>
+                    <Typography variant="body1">{message}</Typography>
+                </Container>
+            </Paper>
+        </Container>
     );
 }
 
