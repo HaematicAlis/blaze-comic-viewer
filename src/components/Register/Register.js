@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import validator from 'validator';
 
@@ -7,13 +7,14 @@ import { cookies } from '../../index.js'
 import { register } from '../../api';
 import { reload } from '../../actions/account.js';
 
-import './Register.css';
+import useStyles from './styles.js';
+import { Button, Paper, Container, TextField, Typography } from '@material-ui/core';
 
 const Register = () => {
-    const [registerInfo, setRegisterInfo] = useState({ username: '', password: '', email: '' });
-    const [message, setMessage] = useState("");
-    const session = useSelector((state) => state.session);
+    const [registerInfo, setRegisterInfo] = useState({ username: "", password: "", confirmPassword: "", email: "" });
+    const [message, setMessage] = useState({ username: "", password: "", confirmPassword: "", email: "", status: "" });
     const dispatch = useDispatch();
+    const classes = useStyles();
     const history = useHistory();
 
     useEffect(() => {
@@ -25,53 +26,71 @@ const Register = () => {
         }
     }, [dispatch, history]);
 
-    useEffect(() => {
-        setMessage(session.message);
-    }, [session]);
+    const validateRegister = () => {
+        let error = false;
+        let username = '';
+        let password = '';
+        let confirmPassword = '';
+        let email = '';
 
-    const doRegister = async () => {
-        if (registerInfo.username === '' || registerInfo.password === '' || registerInfo.confirmPassword === '' || registerInfo.email === '') {
-            setMessage('Must fill out all fields');
+        if (registerInfo.username === '') {
+            username = 'Must fill out all fields';
+            error = true;
+        }
+        if (registerInfo.password === '') {
+            password = 'Must fill out all fields';
+            error = true;
+        }
+        if (registerInfo.confirmPassword === '') {
+            confirmPassword = 'Must fill out all fields';
+            error = true;
+        }
+        if (registerInfo.email === '') {
+            email = 'Must fill out all fields';
+            error = true;
+        }
+        if (error) {
+            setMessage({ username: username, password: password, confirmPassword: confirmPassword, email: email, status: '' });
             return;
         }
+
         if (registerInfo.password !== registerInfo.confirmPassword) {
-            setMessage('Passwords do not match');
+            setMessage({ username: '', password: 'Passwords do not match', confirmPassword: '', email: '', status: '' });
             return;
         }
         if (!validator.isEmail(registerInfo.email)) {
-            setMessage('Invalid email');
+            setMessage({ username: '', password: '', confirmPassword: '', email: 'Invalid email', status: '' });
             return;
         }
+        doRegister();
+    }
 
+    const doRegister = async () => {
         try {
             const { data } = await register({ username: registerInfo.username, password: registerInfo.password, email: registerInfo.email });
-            setMessage(`${data.username} has registered`);
+            setMessage({ ...message, status: `${data.username} has registered` });
         } catch (error) {
-            setMessage(error.response.data.message);
+            setMessage({ ...message, status: error.response.data.message });
         }
     }
 
     return (
-        <div id="outerContainer">
-            <h1>Register</h1>
-            <div id="registerLabels">
-                <p>Username:&nbsp;</p>
-                <p>Password:&nbsp;</p>
-                <p>Confirm Password:&nbsp;</p>
-                <p>Email:&nbsp;</p>
-            </div>
-            <div id="registerFields">
-                <input type="text" id="registerUsername" onChange={(e) => setRegisterInfo({ ...registerInfo, username: e.target.value })}></input><br></br>
-                <input type="password" id="registerPassword" onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}></input><br></br>
-                <input type="password" id="registerConfirmPassword" onChange={(e) => setRegisterInfo({ ...registerInfo, confirmPassword: e.target.value })}></input><br></br>
-                <input type="text" id="registerEmail" onChange={(e) => setRegisterInfo({ ...registerInfo, email: e.target.value })}></input><br></br>
-            </div>
-            <div id="submitBox">
-                <button type="button" id="registerButton" onClick={doRegister}>Register</button><br></br>
-                <Link to="/login"><p>Click here to login.</p></Link><br></br>
-                <div id="registerStatus">{message}</div>
-            </div>
-        </div>
+        <Container m={5} maxWidth="sm" className={classes.outerContainer}>
+            <Paper elevation={5}>
+                <Typography variant="h4">Register</Typography>
+                <div className={classes.registerFields}>
+                    <TextField label="Username" className={classes.registerField} error={message.username ? true : false} helperText={message.username ? message.username : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, username: e.target.value })}></TextField>
+                    <TextField label="Password" error={message.password ? true : false} helperText={message.password ? message.password : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, password: e.target.value })}></TextField>
+                    <TextField label="Confirm Password" error={message.confirmPassword ? true : false} helperText={message.passwordConfirm ? message.passwordConfirm : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, confirmPassword: e.target.value })}></TextField>
+                    <TextField label="Email" error={message.email ? true : false} helperText={message.email ? message.email : ""} variant="outlined" onChange={(e) => setRegisterInfo({ ...registerInfo, email: e.target.value })}></TextField>
+                </div>
+                <div className={classes.submitBox}>
+                    <Button variant="contained" color="primary" onClick={validateRegister}>Register</Button>
+                    <Link to="/login"><p>Click here to login.</p></Link><br></br>
+                    <div id="registerStatus">{message.status}</div>
+                </div>
+            </Paper>
+        </Container>
     );
 }
 
