@@ -10,9 +10,7 @@ const Comic = ({ comic }) => {
     return (
         <Container className={classes.outerContainer} maxWidth="lg">
             <Typography variant="h4">{comicInfo.name}</Typography>
-            {comicInfo.images.map((image) => {
-                return <img key={image._id} src={image.base64} alt={image.name} width="50px" />;
-            })}
+            <img src={comicInfo.cover.base64} alt={`Refresh to see ${comicInfo.name}`} width="50px" />
         </Container>
     );
 }
