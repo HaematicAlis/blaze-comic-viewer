@@ -26,8 +26,8 @@ const Comics = () => {
             {
                 selected.map((image) => {
                     return (
-                        <Grid item>
-                            <img key={image._id} src={image.base64} alt={image.name} width="90%" justify="center" />
+                        <Grid item key={image.name}>
+                            <img src={image.base64} alt={image.name} width="90%" justify="center" />
                         </Grid>
                     );
                 })
