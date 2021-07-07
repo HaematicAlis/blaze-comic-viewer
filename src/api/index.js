@@ -8,3 +8,4 @@ export const login = (loginInfo) => axios.post(url + '/account/login', loginInfo
 
 export const getComics = (id) => axios.post(url + '/comic/get', id);
 export const addComic = (comicInfo) => axios.post(url + '/comic/add', comicInfo);
+export const addImage = (imageInfo) => axios.post(url + '/comic/addImage', imageInfo);

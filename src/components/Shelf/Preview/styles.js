@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
         }
     },
     previewPaper: {
-        padding: theme.spacing(8),
+        padding: theme.spacing(5),
         height: '40vh',
         marginTop: '20vh',
         marginBottom: theme.spacing(3),

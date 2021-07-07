@@ -11,10 +11,13 @@ export const getComics = (id) => async (dispatch) => {
     }
 }
 
-export const addComic = (comicInfo) => async (dispatch) => {
+export const addComic = (comicInfo, images) => async (dispatch) => {
     try {
         const { data } = await api.addComic(comicInfo);
         dispatch({ type: ADD_COMIC, payload: data });
+        /*images.forEach(async (image) => {
+            await api.addImage({ id: data._id, image: image })
+        });*/
     } catch (error) {
         console.log(error);
     }

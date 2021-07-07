@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import Comic from './Comic/Comic.js';
+
 import { Typography, Container, CircularProgress } from '@material-ui/core';
 import useStyles from './styles.js';
 
@@ -13,9 +15,10 @@ const Comics = () => {
             <Typography variant="h4">Comics</Typography>
             {!comics.length ? <CircularProgress color="secondary" /> : (
                 comics.map((comic) => {
-                    return comic.images.map((image) => {
-                        return <img key={image._id} width="50px" src={image.base64} alt="base64" />;
-                    });
+                    return <Comic key={comic._id} comic={comic}/>;
+                    //return comic.images.map((image) => {
+                        //return <img key={image._id} width="50px" src={image.base64} alt="base64" />;
+                    //});
                 })
             )}
         </Container>

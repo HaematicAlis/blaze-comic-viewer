@@ -6,11 +6,12 @@ import { cookies } from '../../../index.js';
 import { logout } from '../../../actions/account.js';
 import { addComic } from '../../../actions/comic.js';
 
-import { Typography, Container, Button, Paper, Grid } from '@material-ui/core';
+import { Typography, Container, Button, Paper, Grid, TextField } from '@material-ui/core';
 import useStyles from './styles.js';
 
 const Preview = () => {
     const [selectedFile, setSelectedFile] = useState([]);
+    const [comicName, setComicName] = useState('');
     const session = useSelector((state) => state.session);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -41,8 +42,14 @@ const Preview = () => {
     const doUpload = () => {
         const files = selectedFile;
         const images = convertImages(files);
-        const comics = { name: 'name', owner: session.id, images: images };
-        dispatch(addComic(comics));
+        let name;
+        if (comicName) {
+            name = comicName;
+        } else {
+            name = 'Untitled';
+        }
+        const comic = { name: name, owner: session.id };
+        dispatch(addComic(comic, images))
         setSelectedFile([]);
     }
 
@@ -50,7 +57,7 @@ const Preview = () => {
         <Container className={classes.outerContainer}>
             <Button variant="outlined" color="secondary" onClick={doLogout}>Logout</Button>
             <Paper className={classes.previewPaper}>
-                <Grid container spacing={3} direction="column" align="center" justify="center">
+                <Grid container spacing={2} direction="column" align="center" justify="center">
                     <Grid item>
                         <Typography variant="body1">You are logged in as <span style={{color: 'red'}}>{session.username}.</span></Typography>
                     </Grid>
@@ -61,12 +68,13 @@ const Preview = () => {
                         <FileBase64 className={classes.fileBase} multiple={true} onDone={getFiles.bind(this)}></FileBase64>
                     </Grid>
                     <Grid item>
-                        <Button variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
+                        <Button disabled={selectedFile.length ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
                     </Grid>
                     <Grid item>
-                        <Typography variant="body2">{selectedFile.length ? selectedFile[0].name : 'No file selected'}</Typography>
-                            {selectedFile.length === 1 && <img src={selectedFile[0].base64} alt='base' width='25px'/>}
-                            {selectedFile.length > 1 && <div><img src={selectedFile[0].base64} alt='base' width='25px'/>...</div>}
+                        {selectedFile.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}
+                        <Typography variant="body2">{selectedFile.length ? `${selectedFile.length} files selected` : 'No file selected'}</Typography>
+                            {selectedFile.length === 1 && <img src={selectedFile[0].base64} alt={selectedFile[0].name} width='25px'/>}
+                            {selectedFile.length > 1 && <div><img src={selectedFile[0].base64} alt={selectedFile[0].name} width='25px'/>...</div>}
                     </Grid>
                 </Grid>
             </Paper>
