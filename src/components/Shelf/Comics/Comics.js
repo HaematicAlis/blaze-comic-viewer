@@ -12,34 +12,40 @@ const Comics = () => {
     const selected = useSelector((state) => state.selected);
     const classes = useStyles();
 
-    const doLeft = () => {
+    const doPrev = () => {
         if (page > 0) {
             setPage(page - 1);
         }
     }
 
-    const doRight = () => {
+    const doNext = () => {
         if (page < selected.length - 1) {
             setPage(page + 1);
         }
     }
 
     return (
-        <Container className={classes.outerContainer} maxWidth="lg">
+        <Container className={classes.outerContainer} maxWidth="false">
             <Grid container direction="column" align="center">
-                <Grid container direction="row" align="center">
+                <Grid container spacing={2} direction="row" justify="center">
                     <Grid item>
-                        <Button variant="outlined" color="secondary" onClick={doLeft}>Left</Button>
+                        <Button variant="outlined" color="secondary" onClick={() => setPage(0)}>First</Button>
                     </Grid>
                     <Grid item>
-                        <Button variant="outlined" color="secondary" onClick={doRight}>Right</Button>
+                        <Button variant="outlined" color="secondary" onClick={doPrev}>Prev</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="outlined" color="secondary" onClick={doNext}>Next</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="outlined" color="secondary" onClick={() => setPage(selected.length-1)}>Last</Button>
                     </Grid>
                 </Grid>
             {
                 selected.length ? (
                     <Grid item key={selected[page].name}>
                         <Typography variant="subtitle2">{selected[page].name}</Typography>
-                        <img src={selected[page].base64} alt={selected[page].name} width="90%" justify="center" />
+                        <img className={classes.comicImage} src={selected[page].base64} alt={selected[page].name} justify="center" />
                     </Grid>
                 ) : ''
             }
