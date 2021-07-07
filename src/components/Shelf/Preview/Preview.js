@@ -23,6 +23,7 @@ const Preview = () => {
             .then(() => {
                 cookies.remove('ID');
                 cookies.remove('Username');
+                dispatch(clearSelected());
             });
         }
     }
@@ -42,7 +43,7 @@ const Preview = () => {
     }
 
     const doUpload = () => {
-        const cover = selected[selected.length-1];
+        const cover = selected[0];
         let name;
         if (comicName) {
             name = comicName;
@@ -78,8 +79,8 @@ const Preview = () => {
                     <Grid item>
                         {selected.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}
                         <Typography variant="body2">{selected.length ? `${selected.length} files selected` : 'No file selected'}</Typography>
-                            {selected.length === 1 && <img src={selected[selected.length-1].base64} alt={selected[selected.length-1].name} width='25px'/>}
-                            {selected.length > 1 && <div><img src={selected[selected.length-1].base64} alt={selected[selected.length-1].name} width='25px'/>...</div>}
+                            {selected.length === 1 && <img src={selected[0].base64} alt={selected[0].name} width='25px'/>}
+                            {selected.length > 1 && <div><img src={selected[0].base64} alt={selected[0].name} width='25px'/>...</div>}
                     </Grid>
                 </Grid>
             </Paper>
