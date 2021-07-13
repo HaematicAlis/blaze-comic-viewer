@@ -10,14 +10,19 @@ export default makeStyles((theme) => ({
         [theme.breakpoints.up('lg')]: {
             width: '70vw',
             height: '100vh',
-        }
+        },
     },
     comicImage: {
         border: '3px solid black',
         height: '90vh',
     },
     comicImageWide: {
-        border: '3px solid red',
-        height: '90vh',
+        border: '3px solid black',
+        [theme.breakpoints.down('md')]: {
+            width: '90vw',
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: '60vw',
+        }
     }
 }));

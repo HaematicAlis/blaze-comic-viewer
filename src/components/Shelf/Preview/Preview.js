@@ -7,6 +7,7 @@ import { logout } from '../../../actions/account.js';
 import { addComic } from '../../../actions/comic.js';
 import { select, clearSelected } from '../../../actions/selected.js';
 import { setPage } from '../../../actions/page.js';
+import { setMode } from '../../../actions/viewOptions.js';
 
 import { Typography, Container, Button, Paper, Grid, TextField } from '@material-ui/core';
 import useStyles from './styles.js';
@@ -15,6 +16,7 @@ const Preview = () => {
     const [comicName, setComicName] = useState('');
     const session = useSelector((state) => state.session);
     const selected = useSelector((state) => state.selected);
+    const viewOptions = useSelector((state) => state.viewOptions);
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -60,10 +62,19 @@ const Preview = () => {
         dispatch(clearSelected());
     }
 
+    const doToggleView = () => {
+        if (viewOptions.mode) {
+            dispatch(setMode(0));
+        } else {
+            dispatch(setMode(1));
+        }
+    }
+
     return (
         <Container className={classes.outerContainer}>
             <Button variant="outlined" color="secondary" onClick={doLogout}>Logout</Button>
             <Button variant="outlined" color="secondary" onClick={doClear}>Clear</Button>
+            <Button variant="outlined" color="secondary" onClick={doToggleView}>Toggle View</Button>
             <Paper className={classes.previewPaper}>
                 <Grid container spacing={2} direction="column" align="center" justify="center">
                     <Grid item>
