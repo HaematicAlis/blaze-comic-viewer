@@ -8,7 +8,7 @@ const Comic = ({ comic }) => {
     const comicInfo = comic;
 
     return (
-        <Container className={classes.outerContainer} maxWidth="lg">
+        <Container className={classes.outerContainer} maxWidth={false}>
             <Typography variant="h4">{comicInfo.name}</Typography>
             <img src={comicInfo.cover.base64} alt={`Refresh to see ${comicInfo.name}`} width="50px" />
         </Container>

@@ -47,7 +47,7 @@ const Comics = () => {
             {
                 selected.length ? (
                     <Grid item key={selected[page].name}>
-                        <Typography variant="subtitle2">{selected[page].name}</Typography>
+                        <Typography variant="subtitle2"><span style={{color: "white"}}>{selected[page].name}</span></Typography>
                         <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected[page].base64} alt={selected[page].name} justify="center" />
                     </Grid>
                 ) : ''

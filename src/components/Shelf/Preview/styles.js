@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     outerContainer: {
-        backgroundColor: '#fdf',
+        backgroundColor: '#888',
         [theme.breakpoints.down('md')]: {
             width: '100vw',
             height: '100vh',
@@ -10,6 +10,8 @@ export default makeStyles((theme) => ({
         [theme.breakpoints.up('lg')]: {
             width: '30vw',
             minHeight: '100vh',
+            filter: 'drop-shadow(-30px 0px 20px #000)',
+            borderRadius: '5px',
         }
     },
     previewPaper: {
@@ -21,6 +23,8 @@ export default makeStyles((theme) => ({
         },
         [theme.breakpoints.up('lg')]: {
             marginTop: '20vh',
+            marginLeft: '3vw',
+            marginRight: '3vw',
             height: '40vh',
         },
     },
