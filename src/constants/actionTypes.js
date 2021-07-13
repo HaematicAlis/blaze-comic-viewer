@@ -13,3 +13,6 @@ export const CLEAR_SELECTED = 'CLEAR_SELECTED'
 
 // page
 export const SET_PAGE = 'SET_PAGE';
+
+// viewOptions
+export const SET_MODE = 'SET_MODE';

@@ -14,11 +14,10 @@ export default makeStyles((theme) => ({
     },
     comicImage: {
         border: '3px solid black',
-        [theme.breakpoints.down('md')]: {
-            width: '60vw',
-        },
-        [theme.breakpoints.up('lg')]: {
-            height: '80vh',
-        }
+        height: '90vh',
     },
+    comicImageWide: {
+        border: '3px solid red',
+        height: '90vh',
+    }
 }));
