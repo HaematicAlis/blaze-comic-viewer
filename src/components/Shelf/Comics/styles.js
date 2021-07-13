@@ -5,11 +5,10 @@ export default makeStyles((theme) => ({
         backgroundColor: '#ddf',
         [theme.breakpoints.down('md')]: {
             width: '100vw',
-            height: '100vh',
         },
         [theme.breakpoints.up('lg')]: {
             width: '70vw',
-            height: '100vh',
+            minHeight: '100vh',
         },
     },
     comicImage: {

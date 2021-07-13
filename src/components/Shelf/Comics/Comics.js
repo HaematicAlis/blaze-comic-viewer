@@ -29,7 +29,7 @@ const Comics = () => {
 
     return (
         <Container className={classes.outerContainer} maxWidth={false}>
-            <Grid container direction="column" align="center">
+            <Grid container direction="column" justify="center" align="center">
                 <Grid container spacing={2} direction="row" justify="center">
                     <Grid item>
                         <Button variant="outlined" color="secondary" onClick={() => dispatch(setPage(0))}>First</Button>

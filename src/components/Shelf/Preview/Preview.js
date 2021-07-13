@@ -71,32 +71,36 @@ const Preview = () => {
     }
 
     return (
-        <Container className={classes.outerContainer}>
+        <Container className={classes.outerContainer} maxWidth={false}>
             <Button variant="outlined" color="secondary" onClick={doLogout}>Logout</Button>
             <Button variant="outlined" color="secondary" onClick={doClear}>Clear</Button>
             <Button variant="outlined" color="secondary" onClick={doToggleView}>Toggle View</Button>
-            <Paper className={classes.previewPaper}>
-                <Grid container spacing={2} direction="column" align="center" justify="center">
-                    <Grid item>
-                        <Typography variant="body1">You are logged in as <span style={{color: 'red'}}>{session.username}.</span></Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography variant="body1">Import a comic to get started.</Typography>
-                    </Grid>
-                    <Grid item>
-                        <FileBase64 className={classes.fileBase} multiple={true} onDone={getFiles.bind(this)}></FileBase64>
-                    </Grid>
-                    <Grid item>
-                        <Button disabled={selected.length ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
-                    </Grid>
-                    <Grid item>
-                        {selected.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}
-                        <Typography variant="body2">{selected.length ? `${selected.length} files selected` : 'No file selected'}</Typography>
-                            {selected.length === 1 && <img src={selected[0].base64} alt={selected[0].name} width='25px'/>}
-                            {selected.length > 1 && <div><img src={selected[0].base64} alt={selected[0].name} width='25px'/>...</div>}
-                    </Grid>
+            <Grid container spacing={2} direction="column" align="center">
+                <Grid item>
+                    <Paper className={classes.previewPaper}>
+                        <Grid container spacing={2} direction="column" align="center" justify="center">
+                            <Grid item>
+                                <Typography variant="body1">You are logged in as <span style={{color: 'red'}}>{session.username}.</span></Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="body1">Import a comic to get started.</Typography>
+                            </Grid>
+                            <Grid item>
+                                <FileBase64 className={classes.fileBase} multiple={true} onDone={getFiles.bind(this)}></FileBase64>
+                            </Grid>
+                            <Grid item>
+                                <Button disabled={selected.length ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
+                            </Grid>
+                            <Grid item>
+                                {selected.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}
+                                <Typography variant="body2">{selected.length ? `${selected.length} files selected` : 'No file selected'}</Typography>
+                                    {selected.length === 1 && <img src={selected[0].base64} alt={selected[0].name} width='25px'/>}
+                                    {selected.length > 1 && <div><img src={selected[0].base64} alt={selected[0].name} width='25px'/>...</div>}
+                            </Grid>
+                        </Grid>
+                    </Paper>
                 </Grid>
-            </Paper>
+            </Grid>
         </Container>
     );
 }
