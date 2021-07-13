@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase64 from '../../../lib/react-file-base64.js';
 
-import { cookies } from '../../../index.js';
-import { logout } from '../../../actions/account.js';
 import { addComic } from '../../../actions/comic.js';
-import { select, clearSelected } from '../../../actions/selected.js';
+import { select } from '../../../actions/selected.js';
 import { setPage } from '../../../actions/page.js';
-import { setMode } from '../../../actions/viewOptions.js';
 
 import { Typography, Container, Button, Paper, Grid, TextField } from '@material-ui/core';
 import useStyles from './styles.js';
@@ -16,26 +13,14 @@ const Preview = () => {
     const [comicName, setComicName] = useState('');
     const session = useSelector((state) => state.session);
     const selected = useSelector((state) => state.selected);
-    const viewOptions = useSelector((state) => state.viewOptions);
     const classes = useStyles();
     const dispatch = useDispatch();
-
-    const doLogout = () => {
-        if (session.username) {
-            dispatch(logout())
-            .then(() => {
-                cookies.remove('ID');
-                cookies.remove('Username');
-                dispatch(clearSelected());
-            });
-        }
-    }
 
     const convertImages = (files) => {
         let images = [];
         files.forEach((file) => {
-            let { name, fileType, size, base64 } = file;
-            images.push({ name: name, fileType: fileType, size: size, base64: base64 });
+            let { name, type, size, base64 } = file;
+            images.push({ name: name, fileType: type, size: size, base64: base64 });
         });
         return images;
     }
@@ -58,23 +43,8 @@ const Preview = () => {
         dispatch(addComic(comic, cover));
     }
 
-    const doClear = () => {
-        dispatch(clearSelected());
-    }
-
-    const doToggleView = () => {
-        if (viewOptions.mode) {
-            dispatch(setMode(0));
-        } else {
-            dispatch(setMode(1));
-        }
-    }
-
     return (
         <Container className={classes.outerContainer} maxWidth={false}>
-            <Button variant="outlined" color="secondary" onClick={doLogout}>Logout</Button>
-            <Button variant="outlined" color="secondary" onClick={doClear}>Clear</Button>
-            <Button variant="outlined" color="secondary" onClick={doToggleView}>Toggle View</Button>
             <Grid container spacing={2} direction="column" align="center">
                 <Grid item>
                     <Paper className={classes.previewPaper}>

@@ -5,11 +5,11 @@ export default makeStyles((theme) => ({
         backgroundColor: '#888',
         [theme.breakpoints.down('md')]: {
             width: '100vw',
-            height: '100vh',
+            height: '95vh',
         },
         [theme.breakpoints.up('lg')]: {
             width: '30vw',
-            minHeight: '100vh',
+            minHeight: '95vh',
             filter: 'drop-shadow(-30px 0px 20px #000)',
             borderRadius: '5px',
         }

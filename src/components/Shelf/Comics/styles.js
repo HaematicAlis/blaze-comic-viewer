@@ -3,12 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     outerContainer: {
         backgroundColor: '#333',
+        paddingTop: theme.spacing(2),
         [theme.breakpoints.down('md')]: {
             minWidth: '100vw',
         },
         [theme.breakpoints.up('lg')]: {
             width: '70vw',
-            minHeight: '100vh',
+            minHeight: '95vh',
         },
     },
     comicImage: {

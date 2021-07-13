@@ -5,4 +5,15 @@ export default makeStyles((theme) => ({
         width: '100vw',
         height: '100vh',
     },
+    appbar: {
+        backgroundColor: '#333',
+        height: '5vh',
+    },
+    toolbarPageControl: {
+        marginRight: theme.spacing(2),
+        flex: 1,
+    },
+    toolbarButton: {
+        marginRight: theme.spacing(2),
+    },
 }));
