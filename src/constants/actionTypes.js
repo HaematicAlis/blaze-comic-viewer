@@ -10,3 +10,6 @@ export const ADD_COMIC = 'ADD_COMIC';
 // selected
 export const SELECT = 'SELECT';
 export const CLEAR_SELECTED = 'CLEAR_SELECTED'
+
+// page
+export const SET_PAGE = 'SET_PAGE';

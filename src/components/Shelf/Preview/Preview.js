@@ -6,6 +6,7 @@ import { cookies } from '../../../index.js';
 import { logout } from '../../../actions/account.js';
 import { addComic } from '../../../actions/comic.js';
 import { select, clearSelected } from '../../../actions/selected.js';
+import { setPage } from '../../../actions/page.js';
 
 import { Typography, Container, Button, Paper, Grid, TextField } from '@material-ui/core';
 import useStyles from './styles.js';
@@ -39,7 +40,8 @@ const Preview = () => {
 
     const getFiles = (files) => {
         const images = convertImages(files);
-        dispatch(select(images));
+        dispatch(setPage(0))
+        .then(dispatch(select(images)));
     }
 
     const doUpload = () => {
