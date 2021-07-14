@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FileBase64 from '../../../lib/react-file-base64.js';
 
 import { addComic } from '../../../actions/comic.js';
-import { select } from '../../../actions/selected.js';
+import { select, selectImgur } from '../../../actions/selected.js';
 import { setPage } from '../../../actions/page.js';
 
 import { Typography, Container, Button, Paper, Grid, TextField } from '@material-ui/core';
@@ -11,6 +11,7 @@ import useStyles from './styles.js';
 
 const Preview = () => {
     const [comicName, setComicName] = useState('');
+    const [imgurAlbum, setImgurAlbum] = useState('');
     const session = useSelector((state) => state.session);
     const selected = useSelector((state) => state.selected);
     const classes = useStyles();
@@ -60,6 +61,10 @@ const Preview = () => {
                             </Grid>
                             <Grid item>
                                 <Button disabled={selected.length ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
+                            </Grid>
+                            <Grid item>
+                                <TextField variant="outlined" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
+                                <Button variant="outlined" color="secondary" size="small" onClick={dispatch(selectImgur(imgurAlbum))}>Imgur</Button>
                             </Grid>
                             <Grid item>
                                 {selected.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}

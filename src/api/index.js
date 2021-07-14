@@ -20,10 +20,10 @@ export const getAlbum = () => {
     };
 
     axios.get('https://api.imgur.com/3/album/3CC5w7p/images', config, data)
-    .then(function (response) {
+    .then((response) => {
       console.log(JSON.stringify(response.data));
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     });
 }
