@@ -103,7 +103,7 @@ const Shelf = () => {
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doPrev}><NavigateBeforeIcon /></IconButton>
                         </Grid>
                         <Grid item>
-                            <IconButton className={classes.toolbarButton} size="small" color="secondary">{`${page}/${selected.length}`}</IconButton>
+                            <IconButton className={classes.toolbarButton} size="small" color="secondary">{`${page+1}/${selected.length}`}</IconButton>
                         </Grid>
                         <Grid item>
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doNext}><NavigateNextIcon /></IconButton>

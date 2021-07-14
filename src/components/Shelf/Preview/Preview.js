@@ -21,7 +21,7 @@ const Preview = () => {
         let images = [];
         files.forEach((file) => {
             let { name, type, size, base64 } = file;
-            images.push({ name: name, fileType: type, size: size, base64: base64 });
+            images.push({ name: name, fileType: type, size: size, src: base64 });
         });
         return images;
     }
@@ -34,13 +34,13 @@ const Preview = () => {
 
     const doUpload = () => {
         const cover = selected[0];
-        let name;
-        if (comicName) {
-            name = comicName;
-        } else {
-            name = 'Untitled';
-        }
-        const comic = { name: name, owner: session.id };
+
+        let name, album;
+        comicName ? name = comicName : name = 'Untitled';
+        album = imgurAlbum;
+
+        const comic = { name: name, owner: session.id, album: album };
+        setImgurAlbum('');
         dispatch(addComic(comic, cover));
     }
 
@@ -73,8 +73,8 @@ const Preview = () => {
                             <Grid item>
                                 {selected.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}
                                 <Typography variant="body2">{selected.length ? `${selected.length} files selected` : 'No file selected'}</Typography>
-                                    {selected.length === 1 && <img src={selected[0].base64} alt={selected[0].name} width='25px'/>}
-                                    {selected.length > 1 && <div><img src={selected[0].base64} alt={selected[0].name} width='25px'/>...</div>}
+                                    {selected.length === 1 && <img src={selected[0].src} alt={selected[0].name} width='25px'/>}
+                                    {selected.length > 1 && <div><img src={selected[0].src} alt={selected[0].name} width='25px'/>...</div>}
                             </Grid>
                         </Grid>
                     </Paper>

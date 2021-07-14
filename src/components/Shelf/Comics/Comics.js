@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Comic from './Comic/Comic.js';
 
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, CircularProgress } from '@material-ui/core';
 import useStyles from './styles.js';
 
 const Comics = () => {
@@ -19,17 +19,20 @@ const Comics = () => {
             {
                 selected.length ? (
                     <Grid item key={selected[page].name}>
-                        <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected[page].base64} alt={selected[page].name} justify="center" />
+                        <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected[page].src} alt={selected[page].name} justify="center" />
                     </Grid>
-                ) : <></>
+                ) : (
+                    <>
+                    {!comics.length ? <CircularProgress color="secondary" /> : (
+                        comics.map((comic) => {
+                            return <Comic key={comic._id} comic={comic}/>;
+                        })
+                    )}
+                    </>
+                )
             }
             </Grid>
-            {//!comics.length ? <CircularProgress color="secondary" /> : (
-            !comics.length ? <></> : (
-                comics.map((comic) => {
-                    return <Comic key={comic._id} comic={comic}/>;
-                })
-            )}
+            
         </Container>
     );
 }
