@@ -24,6 +24,8 @@ export const selectImgur = (albumHash) => async (dispatch) => {
         var images = data.data;
         var newImages = [];
         images.forEach((image) => {
+            let title;
+            image.description ? title = image.description : title = '';
             newImages.push({ name: image.description, fileType: image.type, size: image.size, src: image.link });
         });
         newImages.sort((a, b) => a.name.localeCompare(b.name));
