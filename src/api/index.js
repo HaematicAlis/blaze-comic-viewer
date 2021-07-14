@@ -10,4 +10,4 @@ export const getComics = (id) => axios.post(url + '/comic/get', id);
 export const addComic = (comicInfo) => axios.post(url + '/comic/add', comicInfo);
 export const addImage = (imageInfo) => axios.post(url + '/comic/addImage', imageInfo);
 
-export const getAlbum = (info) => axios.get(info.url, info.config, info.data);
+export const getAlbum = (info) => axios.get(info.url, info.config, info.formData);

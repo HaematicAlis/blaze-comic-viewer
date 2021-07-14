@@ -20,7 +20,9 @@ export const selectImgur = (albumHash) => async (dispatch) => {
             },
         };
 
-        var { data } = await api.getAlbum({ url: url, config: config, data: formData });
+        var { data } = await api.getAlbum({ url: url, config: config, formData: formData });
+        console.log(data);
+        console.log(typeof data);
         var images = [];
         data.forEach((image) => {
             images.push({ name: image.title, type: image.type, size: image.size, base64: image.link });
