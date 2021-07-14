@@ -11,7 +11,7 @@ export const select = (selected) => async (dispatch) => {
 
 export const selectImgur = (albumHash) => async (dispatch) => {
     try {
-        var url = `https://api.imgur.com/3/album/${albumHash}/images`;
+        var url = `https://api.imgur.com/3/album/${albumHash}`;
         var formData = new FormData();
 
         var config = {
@@ -21,14 +21,13 @@ export const selectImgur = (albumHash) => async (dispatch) => {
         };
 
         var { data } = await api.getAlbum({ url: url, config: config, formData: formData });
-        var images = data.data;
+        var images = data.data.images;
+        console.log(data.data.layout);
         var newImages = [];
         images.forEach((image) => {
-            let title;
-            image.description ? title = image.description : title = '';
-            newImages.push({ name: title, fileType: image.type, size: image.size, src: image.link });
+            newImages.push({ name: image.id, fileType: image.type, size: image.size, src: image.link });
         });
-        newImages.sort((a, b) => a.name.localeCompare(b.name));
+        //newImages.sort((a, b) => a.name.localeCompare(b.name));
         dispatch({ type: SELECT, payload: newImages });
     } catch (error) {
         console.log(error);
