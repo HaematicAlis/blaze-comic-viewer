@@ -37,7 +37,7 @@ const Preview = () => {
 
         let name, album;
         comicName ? name = comicName : name = 'Untitled';
-        album = imgurAlbum;
+        imgurAlbum ? album = imgurAlbum : album = 'none';
 
         const comic = { name: name, owner: session.id, album: album };
         setImgurAlbum('');
@@ -67,7 +67,7 @@ const Preview = () => {
                                 <Button disabled={selected.length ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
                             </Grid>
                             <Grid item>
-                                <TextField variant="outlined" size="small" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
+                                <TextField variant="outlined" color="secondary" size="small" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
                                 <Button variant="outlined" color="secondary" size="small" onClick={doImgurSelect}>Imgur</Button>
                             </Grid>
                             <Grid item>

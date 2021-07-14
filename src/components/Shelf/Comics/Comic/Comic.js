@@ -13,7 +13,7 @@ const Comic = ({ comic }) => {
     const comicInfo = comic;
 
     const selectComic = () => {
-        if (comicInfo.album) {
+        if (comicInfo.album !== 'none') {
             dispatch(setPage(0))
             .then(dispatch(selectImgur(comicInfo.album)));
         } else {
