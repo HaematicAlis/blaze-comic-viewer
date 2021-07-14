@@ -11,8 +11,17 @@ export const select = (selected) => async (dispatch) => {
 
 export const selectImgur = (albumHash) => async (dispatch) => {
     try {
+        var url = `https://api.imgur.com/3/album/${albumHash}/images`;
+        var formData = new FormData();
+
+        var config = {
+            headers: { 
+                'Authorization': 'Client-ID fcb1462619a6667',
+            },
+        };
+
+        var { data } = await api.getAlbum({ url: url, config: config, data: formData });
         var images = [];
-        var { data } = await api.getAlbum(albumHash);
         data.forEach((image) => {
             images.push({ name: image.title, type: image.type, size: image.size, base64: image.link });
         })
