@@ -97,10 +97,13 @@ const Shelf = () => {
                 <Toolbar variant="dense">
                     <Grid container className={classes.toolbarPageControl} direction="row">
                         <Grid item>
-                            <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={() => dispatch(setPage(0))}><SkipPreviousIcon /></IconButton>
+                            <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={() => dispatch(setPage(0))}><SkipPreviousIcon/></IconButton>
                         </Grid>
                         <Grid item>
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doPrev}><NavigateBeforeIcon /></IconButton>
+                        </Grid>
+                        <Grid item>
+                            <IconButton className={classes.toolbarButton} size="small" color="secondary">{`${page}/${selected.length}`}</IconButton>
                         </Grid>
                         <Grid item>
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doNext}><NavigateNextIcon /></IconButton>

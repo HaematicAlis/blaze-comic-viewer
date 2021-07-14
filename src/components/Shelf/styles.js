@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     },
     appbar: {
         backgroundColor: '#333',
-        height: '5vh',
+        height: '50px',
     },
     toolbarPageControl: {
         marginRight: theme.spacing(2),
