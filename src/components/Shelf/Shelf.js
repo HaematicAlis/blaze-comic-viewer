@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { cookies } from '../../index.js';
+import { getAlbum } from '../../api';
 import { logout } from '../../actions/account.js';
 import { getComics } from '../../actions/comic.js';
 import { clearSelected } from '../../actions/selected.js';
@@ -109,6 +110,7 @@ const Shelf = () => {
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={() => dispatch(setPage(selected.length-1))}><SkipNextIcon /></IconButton>
                         </Grid>
                     </Grid>
+                    <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={getAlbum}>Album</IconButton>
                     <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doLogout}><MeetingRoomIcon /></IconButton>
                     <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={toggleSidebar}>{sidebarVisible ? <MinimizeIcon /> : <AddIcon />}</IconButton>
                     <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doClear}><ClearIcon /></IconButton>
