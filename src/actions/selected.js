@@ -24,7 +24,7 @@ export const selectImgur = (albumHash) => async (dispatch) => {
         var images = [];
         data.forEach((image) => {
             images.push({ name: image.title, type: image.type, size: image.size, base64: image.link });
-        })
+        });
         dispatch({ type: SELECT, payload: images });
     } catch (error) {
         console.log(error);
