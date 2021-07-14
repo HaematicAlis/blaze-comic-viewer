@@ -44,6 +44,10 @@ const Preview = () => {
         dispatch(addComic(comic, cover));
     }
 
+    const doImgurSelect = () => {
+        dispatch(selectImgur(imgurAlbum));
+    }
+
     return (
         <Container className={classes.outerContainer} maxWidth={false}>
             <Grid container spacing={2} direction="column" align="center">
@@ -63,8 +67,8 @@ const Preview = () => {
                                 <Button disabled={selected.length ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
                             </Grid>
                             <Grid item>
-                                <TextField variant="outlined" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
-                                <Button variant="outlined" color="secondary" size="small" onClick={dispatch(selectImgur(imgurAlbum))}>Imgur</Button>
+                                <TextField variant="outlined" size="small" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
+                                <Button variant="outlined" color="secondary" size="small" onClick={doImgurSelect}>Imgur</Button>
                             </Grid>
                             <Grid item>
                                 {selected.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}

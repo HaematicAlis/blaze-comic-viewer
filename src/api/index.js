@@ -10,7 +10,8 @@ export const getComics = (id) => axios.post(url + '/comic/get', id);
 export const addComic = (comicInfo) => axios.post(url + '/comic/add', comicInfo);
 export const addImage = (imageInfo) => axios.post(url + '/comic/addImage', imageInfo);
 
-export const getAlbum = () => {
+export const getAlbum = (albumHash) => {
+    var url = `https://api.imgur.com/3/album/${albumHash}/images`;
     var data = new FormData();
 
     var config = {
@@ -19,7 +20,7 @@ export const getAlbum = () => {
       },
     };
 
-    axios.get('https://api.imgur.com/3/album/3CC5w7p/images', config, data)
+    axios.get(url, config, data)
     .then((response) => {
       console.log(JSON.stringify(response.data));
     })
