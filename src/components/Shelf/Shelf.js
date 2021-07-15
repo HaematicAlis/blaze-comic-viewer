@@ -11,7 +11,7 @@ import { setMode } from '../../actions/viewOptions.js';
 import Preview from './Preview/Preview.js';
 import Comics from './Comics/Comics.js';
 
-import { Grid, AppBar, Toolbar, IconButton, Container, Drawer, Divider } from '@material-ui/core';
+import { Grid, AppBar, Toolbar, Button, IconButton, Container, Drawer, Divider } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
@@ -20,11 +20,11 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
 import ClearIcon from '@material-ui/icons/Clear';
+import HomeIcon from '@material-ui/icons/Home';
 import ImageIcon from '@material-ui/icons/Image';
 import AddIcon from '@material-ui/icons/Add';
 import MinimizeIcon from '@material-ui/icons/Minimize';
 import MenuIcon from '@material-ui/icons/Menu';
-import ClearAllIcon from '@material-ui/icons/ClearAll';
 import useStyles from './styles.js';
 
 const Shelf = () => {
@@ -86,7 +86,7 @@ const Shelf = () => {
 
     const getInfo = () => {
         let image = selected[page];
-        alert(`Name: ${image.name}\nSize: ${image.size}\nType: ${image.fileType}`);
+        image ? alert(`Name: ${image.name}\nSize: ${image.size}\nType: ${image.fileType}`) : alert('Not viewing any image.');
     }
 
     const toggleSidebar = () => {
@@ -121,13 +121,13 @@ const Shelf = () => {
                     </Grid>
                     <IconButton className={classes.toolbarButton} edge="end" size="small" color="secondary" onClick={toggleDrawer}><MenuIcon /></IconButton>
                     <Drawer variant="persistent" anchor="right" open={drawerState}>
-                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={toggleDrawer}><ClearAllIcon /></IconButton>
+                        <IconButton className={classes.toolbarButton} fullWidth color="secondary" onClick={toggleDrawer}><ClearIcon /></IconButton>
                         <Divider />
-                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doLogout}><MeetingRoomIcon /></IconButton>
-                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={toggleSidebar}>{sidebarVisible ? <MinimizeIcon /> : <AddIcon />}</IconButton>
-                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doClear}><ClearIcon /></IconButton>
-                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={getInfo}><ImageIcon /></IconButton>
-                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doToggleView}>{viewOptions.mode ? <ZoomOutIcon /> : <ZoomInIcon />}</IconButton>
+                        <Button className={classes.toolbarButton} color="secondary" onClick={doClear}><HomeIcon />&nbsp;Home</Button>
+                        <Button className={classes.toolbarButton} color="secondary" onClick={toggleSidebar}>{sidebarVisible ? <><MinimizeIcon />&nbsp;Close Info</> : <><AddIcon />&nbsp;Open Info</>}</Button>
+                        <Button className={classes.toolbarButton} color="secondary" onClick={getInfo}><ImageIcon />&nbsp;Image Data</Button>
+                        <Button className={classes.toolbarButton} color="secondary" onClick={doToggleView}>{viewOptions.mode ? <><ZoomOutIcon />&nbsp;Zoom Out</> : <><ZoomInIcon />&nbsp;Zoom In</>}</Button>
+                        <Button className={classes.toolbarButton} color="secondary" onClick={doLogout}><MeetingRoomIcon />&nbsp;Logout</Button>
                     </Drawer>
                 </Toolbar>
             </AppBar>
