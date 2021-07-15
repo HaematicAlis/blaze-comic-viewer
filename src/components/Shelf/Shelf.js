@@ -11,7 +11,7 @@ import { setMode } from '../../actions/viewOptions.js';
 import Preview from './Preview/Preview.js';
 import Comics from './Comics/Comics.js';
 
-import { Grid, AppBar, Toolbar, IconButton, Container } from '@material-ui/core';
+import { Grid, AppBar, Toolbar, IconButton, Container, Drawer, Divider } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
@@ -23,10 +23,13 @@ import ClearIcon from '@material-ui/icons/Clear';
 import ImageIcon from '@material-ui/icons/Image';
 import AddIcon from '@material-ui/icons/Add';
 import MinimizeIcon from '@material-ui/icons/Minimize';
+import MenuIcon from '@material-ui/icons/Menu';
+import ClearAllIcon from '@material-ui/icons/ClearAll';
 import useStyles from './styles.js';
 
 const Shelf = () => {
     const [sidebarVisible, setSidebarVisible] = useState(true);
+    const [drawerState, setDrawerState] = useState(false);
     const session = useSelector((state) => state.session);
     const selected = useSelector((state) => state.selected);
     const viewOptions = useSelector((state) => state.viewOptions);
@@ -90,6 +93,10 @@ const Shelf = () => {
         sidebarVisible ? setSidebarVisible(false) : setSidebarVisible(true);
     }
 
+    const toggleDrawer = () => {
+        drawerState ? setDrawerState(false) : setDrawerState(true);
+    }
+
     return (
         <Grid container className={classes.outerContainer} direction="row-reverse">
             {renderRedirect()}
@@ -112,11 +119,16 @@ const Shelf = () => {
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={() => dispatch(setPage(selected.length-1))}><SkipNextIcon /></IconButton>
                         </Grid>
                     </Grid>
-                    <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doLogout}><MeetingRoomIcon /></IconButton>
-                    <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={toggleSidebar}>{sidebarVisible ? <MinimizeIcon /> : <AddIcon />}</IconButton>
-                    <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doClear}><ClearIcon /></IconButton>
-                    <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={getInfo}><ImageIcon /></IconButton>
-                    <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doToggleView}>{viewOptions.mode ? <ZoomOutIcon /> : <ZoomInIcon />}</IconButton>
+                    <IconButton className={classes.toolbarButton} edge="end" size="small" color="secondary" onClick={toggleDrawer}><MenuIcon /></IconButton>
+                    <Drawer variant="persistent" anchor="right" open={drawerState}>
+                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={toggleDrawer}><ClearAllIcon /></IconButton>
+                        <Divider />
+                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doLogout}><MeetingRoomIcon /></IconButton>
+                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={toggleSidebar}>{sidebarVisible ? <MinimizeIcon /> : <AddIcon />}</IconButton>
+                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doClear}><ClearIcon /></IconButton>
+                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={getInfo}><ImageIcon /></IconButton>
+                        <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doToggleView}>{viewOptions.mode ? <ZoomOutIcon /> : <ZoomInIcon />}</IconButton>
+                    </Drawer>
                 </Toolbar>
             </AppBar>
             <Grid item>

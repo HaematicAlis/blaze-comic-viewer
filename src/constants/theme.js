@@ -17,6 +17,19 @@ const theme = createMuiTheme({
                 body: {
                     backgroundColor: '#333',
                 },
+                '.MuiDrawer-paperAnchorRight': {
+                    backgroundColor: '#fdf',
+                },
+            },
+        },
+        MuiDrawer: {
+            paper: {
+                backgroundColor: '#333',
+            },
+        },
+        MuiBackdrop: {
+            root: {
+                opacity: '0.0',
             },
         },
     },
