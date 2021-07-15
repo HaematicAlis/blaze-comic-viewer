@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FileBase64 from '../../../lib/react-file-base64.js';
 
 import { addComic } from '../../../actions/comic.js';
-import { select, selectImgur } from '../../../actions/selected.js';
+import { select } from '../../../actions/selected.js';
 import { setPage } from '../../../actions/page.js';
 
 import { Typography, Container, Button, Paper, Grid, TextField } from '@material-ui/core';
@@ -42,10 +42,6 @@ const Preview = () => {
         dispatch(addComic(comic));
     }
 
-    const doImgurSelect = () => {
-        dispatch(selectImgur(imgurAlbum));
-    }
-
     return (
         <Container className={classes.outerContainer} maxWidth={false}>
             <Grid container spacing={2} direction="column" align="center">
@@ -65,11 +61,10 @@ const Preview = () => {
                                 <Button disabled={imgurAlbum ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
                             </Grid>
                             <Grid item>
-                                <TextField variant="outlined" color="secondary" size="small" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
-                                <Button variant="outlined" color="secondary" size="small" onClick={doImgurSelect}>Imgur</Button>
+                                <TextField variant="outlined" label="Imgur album hash" color="secondary" size="small" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
                             </Grid>
                             <Grid item>
-                                {selected.length > 0 && <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>}
+                                <TextField variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>
                                 <Typography variant="body2">{selected.length ? `${selected.length} files selected` : 'No file selected'}</Typography>
                                     {selected.length === 1 && <img src={selected[0].src} alt={selected[0].name} width='25px'/>}
                                     {selected.length > 1 && <div><img src={selected[0].src} alt={selected[0].name} width='25px'/>...</div>}

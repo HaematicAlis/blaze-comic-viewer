@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { select, selectImgur } from '../../../../actions/selected.js';
+import { select } from '../../../../actions/selected.js';
 import { deleteComic } from '../../../../actions/comic.js';
 import { setPage } from '../../../../actions/page.js';
 
@@ -15,15 +15,8 @@ const Comic = ({ comic }) => {
     const comicInfo = comic;
 
     const selectComic = () => {
-        if (comicInfo.album !== 'none') {
-            dispatch(setPage(0))
-            .then(dispatch(selectImgur(comicInfo.album)));
-        } else {
-            let cover = [];
-            cover.push(comicInfo.cover);
-            dispatch(setPage(0))
-            .then(dispatch(select(cover)));
-        }
+        dispatch(setPage(0))
+        .then(dispatch(select(comicInfo)));
     }
 
     const doDeleteComic = () => {
