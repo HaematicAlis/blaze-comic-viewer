@@ -13,7 +13,7 @@ export const getComics = (id) => async (dispatch) => {
 
 export const addComic = (comicInfo) => async (dispatch) => {
     try {
-        var url = `https://api.imgur.com/3/album/${comicInfo.albumHash}`;
+        var url = `https://api.imgur.com/3/album/${comicInfo.album}`;
         var formData = new FormData();
 
         var config = {
