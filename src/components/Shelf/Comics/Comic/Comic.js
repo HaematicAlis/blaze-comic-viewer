@@ -57,6 +57,7 @@ const Comic = ({ comic }) => {
             </Popover>
             <Popover open={infoAnchor ? true : false} anchorEl={infoAnchor} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} transformOrigin={{vertical: 'top', horizontal: 'left'}} onClose={toggleInfoPopup}>
                 <Box p={2}>
+                    <Typography variant="body1">Title: {comicInfo.name}</Typography>
                     <Typography variant="body1">Album: <a href={`https://imgur.com/a/${comicInfo.album}`} target="_blank"rel="noreferrer">{comicInfo.album}</a></Typography>
                     <Typography variant="body1">Pages: {comicInfo.images.length}</Typography>
                 </Box>
