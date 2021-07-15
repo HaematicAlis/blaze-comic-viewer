@@ -20,7 +20,7 @@ const Comic = ({ comic }) => {
             //let { name, type, size, src } = image;
             newImages.push({ name: 'unknown', fileType: 'unknown', size: 'unknown', src: image });
         });
-        return images;
+        return newImages;
     }
 
     const selectComic = () => {
