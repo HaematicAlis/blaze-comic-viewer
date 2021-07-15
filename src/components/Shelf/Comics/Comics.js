@@ -14,25 +14,28 @@ const Comics = () => {
     const classes = useStyles();
 
     return (
-        <Container className={classes.outerContainer} maxWidth={false} disableGutters>
-            <Grid container direction="column" justify="center" align="center">
-            {
-                selected.length ? (
-                    <Grid item key={selected[page].name}>
+        <Container className={classes.outerContainer} maxWidth={false}>
+        {
+            selected.length ? (
+                <Grid container direction="column" justify="center" align="center">
+                    <Grid item>
                         <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected[page].src} alt={selected[page].name} justify="center" />
                     </Grid>
-                ) : (
-                    <>
-                    {!comics.length ? <CircularProgress color="secondary" /> : (
-                        comics.map((comic) => {
-                            return <Comic key={comic._id} comic={comic}/>;
-                        })
-                    )}
-                    </>
-                )
-            }
-            </Grid>
-            
+                </Grid>
+            ) : (
+                <Grid container direction="row" spacing={3}>
+                {!comics.length ? <CircularProgress color="secondary" /> : (
+                    comics.map((comic) => {
+                        return (
+                            <Grid item key={comic._id} xs={4} lg={2}>
+                                <Comic comic={comic}/>
+                            </Grid>
+                        );
+                    })
+                )}
+                </Grid>
+            )
+        }   
         </Container>
     );
 }

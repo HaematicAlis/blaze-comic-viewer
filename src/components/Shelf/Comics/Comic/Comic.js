@@ -25,9 +25,9 @@ const Comic = ({ comic }) => {
     }
 
     return (
-        <Container className={classes.outerContainer} maxWidth={false}>
-            <Typography variant="h4">{comicInfo.name}</Typography>
-            <img src={comicInfo.cover.src} alt={`Refresh to see ${comicInfo.name}`} width="50px" onClick={selectComic} />
+        <Container className={classes.outerContainer} maxWidth={false} disableGutters>
+            <Typography className={classes.titleText} variant="h6">{comicInfo.name}</Typography>
+            <img className={classes.thumbnail} src={comicInfo.cover.src} alt={comicInfo.name} onClick={selectComic} />
         </Container>
     );
 }

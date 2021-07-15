@@ -5,7 +5,6 @@ export default makeStyles((theme) => ({
         backgroundColor: '#888',
         [theme.breakpoints.down('md')]: {
             width: '100vw',
-            height: '95vh',
         },
         [theme.breakpoints.up('lg')]: {
             width: '30vw',
