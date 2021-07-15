@@ -10,6 +10,7 @@ export const login = (loginInfo) => axios.post(url + '/account/login', loginInfo
 // comics
 export const getComics = (id) => axios.post(url + '/comic/get', id);
 export const addComic = (comicInfo) => axios.post(url + '/comic/add', comicInfo);
+export const deleteComic = (id) => axios.post(url + '/comic/delete', id);
 export const addImage = (imageInfo) => axios.post(url + '/comic/addImage', imageInfo);
 
 // imgur api

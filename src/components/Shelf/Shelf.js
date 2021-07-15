@@ -28,7 +28,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './styles.js';
 
 const Shelf = () => {
-    const [sidebarVisible, setSidebarVisible] = useState(true);
+    const [sidebarVisible, setSidebarVisible] = useState(false);
     const [drawerState, setDrawerState] = useState(false);
     const session = useSelector((state) => state.session);
     const selected = useSelector((state) => state.selected);
@@ -39,7 +39,7 @@ const Shelf = () => {
 
     useEffect(() => {
         if (session.id !== 0) {
-            dispatch(getComics({ id: session.id }));
+            dispatch(getComics(session.id));
         }
     }, [dispatch, session.id]);
 
@@ -121,7 +121,7 @@ const Shelf = () => {
                     </Grid>
                     <IconButton className={classes.toolbarButton} edge="end" size="small" color="secondary" onClick={toggleDrawer}><MenuIcon /></IconButton>
                     <Drawer variant="persistent" anchor="right" open={drawerState}>
-                        <IconButton className={classes.toolbarButton} fullWidth color="secondary" onClick={toggleDrawer}><ClearIcon /></IconButton>
+                        <IconButton className={classes.toolbarButton} color="secondary" onClick={toggleDrawer}><ClearIcon /></IconButton>
                         <Divider />
                         <Button className={classes.toolbarButton} color="secondary" onClick={doClear}><HomeIcon />&nbsp;Home</Button>
                         <Button className={classes.toolbarButton} color="secondary" onClick={toggleSidebar}>{sidebarVisible ? <><MinimizeIcon />&nbsp;Close Info</> : <><AddIcon />&nbsp;Open Info</>}</Button>
@@ -132,7 +132,7 @@ const Shelf = () => {
                 </Toolbar>
             </AppBar>
             <Grid item>
-                {sidebarVisible ? <Preview /> : <Container style={{width: '15vw'}}></Container>}
+                {sidebarVisible ? <Preview /> : <Container style={{width: '15vw'}}><></></Container>}
             </Grid>
             <Grid item>
                 <Comics />

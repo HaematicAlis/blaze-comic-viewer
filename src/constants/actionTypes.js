@@ -6,6 +6,7 @@ export const LOGOUT = 'LOGOUT';
 // comics
 export const GET_COMICS = 'GET_COMICS';
 export const ADD_COMIC = 'ADD_COMIC';
+export const DELETE_COMIC = 'DELETE_COMIC';
 
 // selected
 export const SELECT = 'SELECT';
