@@ -19,7 +19,7 @@ const Comics = () => {
             selected.length ? (
                 <Grid container direction="column" justify="center" align="center">
                     <Grid item>
-                        <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected.images[page]} alt={selected[page].name} justify="center" />
+                        <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected[page].src} alt={selected[page].name} justify="center" />
                     </Grid>
                 </Grid>
             ) : (

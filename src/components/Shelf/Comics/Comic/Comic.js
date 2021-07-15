@@ -14,9 +14,19 @@ const Comic = ({ comic }) => {
     const dispatch = useDispatch();
     const comicInfo = comic;
 
+    const convertImages = (images) => {
+        let newImages = [];
+        images.forEach((image) => {
+            //let { name, type, size, src } = image;
+            newImages.push({ name: 'unknown', fileType: 'unknown', size: 'unknown', src: image });
+        });
+        return images;
+    }
+
     const selectComic = () => {
+        const images = convertImages(comicInfo.images);
         dispatch(setPage(0))
-        .then(dispatch(select(comicInfo)));
+        .then(dispatch(select(images)));
     }
 
     const doDeleteComic = () => {
