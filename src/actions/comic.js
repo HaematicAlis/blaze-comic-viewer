@@ -24,14 +24,13 @@ export const addComic = (comicInfo) => async (dispatch) => {
 
         var { data } = await api.getAlbum({ url: url, config: config, formData: formData });
         var images = data.data.images;
-        var imageLinks = [];
+        var newImages = [];
         images.forEach((image) => {
-            imageLinks.push(image.link);
+            newImages.push({ name: image.id, fileType: image.type, size: image.size, src: image.link });
         });
 
-        const { data: comicData } = await api.addComic({ ...comicInfo, images: imageLinks });
-        const { data: newData } = await api.addImage({ id: comicData._id, image: { name: 'cover', size: 'size', fileType: 'fileType', src: imageLinks[0] } });
-        dispatch({ type: ADD_COMIC, payload: newData });
+        const { data: comicData } = await api.addComic({ ...comicInfo, images: newImages });
+        dispatch({ type: ADD_COMIC, payload: comicData });
     } catch (error) {
         console.log(error);
     }

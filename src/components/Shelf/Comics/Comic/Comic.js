@@ -14,19 +14,9 @@ const Comic = ({ comic }) => {
     const dispatch = useDispatch();
     const comicInfo = comic;
 
-    const convertImages = (images) => {
-        let newImages = [];
-        images.forEach((image) => {
-            //let { name, type, size, src } = image;
-            newImages.push({ name: 'unknown', fileType: 'unknown', size: 'unknown', src: image });
-        });
-        return newImages;
-    }
-
     const selectComic = () => {
-        const images = convertImages(comicInfo.images);
         dispatch(setPage(0))
-        .then(dispatch(select(images)));
+        .then(dispatch(select(comicInfo.images)));
     }
 
     const doDeleteComic = () => {
@@ -40,7 +30,7 @@ const Comic = ({ comic }) => {
             <Typography className={classes.titleText} variant="h6">
                 {comicInfo.name}<IconButton color="secondary" size="small" onClick={doDeleteComic}><ClearIcon /></IconButton>
             </Typography>
-            <img className={classes.thumbnail} src={comicInfo.cover.src} alt={comicInfo.name} onClick={selectComic} />
+            <img className={classes.thumbnail} src={comicInfo.images[0]} alt={comicInfo.name} onClick={selectComic} />
         </Container>
     );
 }
