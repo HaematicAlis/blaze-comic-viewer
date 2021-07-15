@@ -30,7 +30,7 @@ const Comic = ({ comic }) => {
             <Typography className={classes.titleText} variant="h6">
                 {comicInfo.name}<IconButton color="secondary" size="small" onClick={doDeleteComic}><ClearIcon /></IconButton>
             </Typography>
-            <img className={classes.thumbnail} src={comicInfo.images[0]} alt={comicInfo.name} onClick={selectComic} />
+            <img className={classes.thumbnail} src={comicInfo.images[0].src} alt={comicInfo.name} onClick={selectComic} />
         </Container>
     );
 }
