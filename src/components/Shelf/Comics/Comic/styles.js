@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
             height: '44vh',
         },
         [theme.breakpoints.up('lg')]: {
-            height: '28vh',
+            height: '33vh',
         },
     },
     thumbnail: {
@@ -26,5 +26,8 @@ export default makeStyles((theme) => ({
     },
     titleText: {
         color: 'white',
+    },
+    popupBox: {
+        padding: theme.spacing(2),
     },
 }));
