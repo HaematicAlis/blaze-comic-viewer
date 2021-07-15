@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
     outerContainer: {
         borderRadius: '5px',
         backgroundColor: '#888',
+        position: 'relative',
         filter: 'drop-shadow(-10px 4px 8px #000)',
         margin: theme.spacing(3),
         padding: theme.spacing(1),
@@ -21,7 +22,7 @@ export default makeStyles((theme) => ({
     },
     bottomBar: {
         position: 'absolute',
-        bottom: '0',
+        bottom: '0%',
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(1),
     },
