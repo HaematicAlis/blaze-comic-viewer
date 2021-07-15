@@ -11,11 +11,33 @@ export const getComics = (id) => async (dispatch) => {
     }
 }
 
-export const addComic = (comicInfo, cover) => async (dispatch) => {
+export const addComic = (comicInfo, cover, albumHash) => async (dispatch) => {
     try {
-        const { data } = await api.addComic(comicInfo);
-        const { data: newData } = await api.addImage({ id: data._id, image: cover });
-        dispatch({ type: ADD_COMIC, payload: newData });
+        if (albumHash !== 'none') {
+            var url = `https://api.imgur.com/3/album/${albumHash}`;
+            var formData = new FormData();
+
+            var config = {
+                headers: { 
+                    'Authorization': 'Client-ID fcb1462619a6667',
+                },
+            };
+
+            var { data } = await api.getAlbum({ url: url, config: config, formData: formData });
+            var images = data.data.images;
+            var imageLinks = [];
+            images.forEach((image) => {
+                imageLinks.push(image.link);
+            });
+
+            const { data: comicData } = await api.addComic({ ...comicInfo, images: imageLinks });
+            const { data: newData } = await api.addImage({ id: comicData._id, image: images[0] });
+            dispatch({ type: ADD_COMIC, payload: newData });
+        } else {
+            const { data: comicData } = await api.addComic(comicInfo);
+            const { data: newData } = await api.addImage({ id: comicData._id, image: cover });
+            dispatch({ type: ADD_COMIC, payload: newData });
+        }
     } catch (error) {
         console.log(error);
     }

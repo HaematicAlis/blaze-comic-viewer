@@ -39,7 +39,7 @@ const Preview = () => {
         comicName ? name = comicName : name = 'Untitled';
         imgurAlbum ? album = imgurAlbum : album = 'none';
 
-        const comic = { name: name, owner: session.id, album: album };
+        const comic = { name: name, owner: session.id, album: album, images: selected };
         setImgurAlbum('');
         dispatch(addComic(comic, cover));
     }
