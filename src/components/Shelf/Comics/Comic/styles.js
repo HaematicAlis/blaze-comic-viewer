@@ -27,7 +27,4 @@ export default makeStyles((theme) => ({
     titleText: {
         color: 'white',
     },
-    popupBox: {
-        padding: theme.spacing(2),
-    },
 }));

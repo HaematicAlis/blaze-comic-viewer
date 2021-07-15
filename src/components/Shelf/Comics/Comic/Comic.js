@@ -36,9 +36,7 @@ const Comic = ({ comic }) => {
 
     return (
         <Container className={classes.outerContainer} maxWidth={false} disableGutters>
-            <Typography className={classes.titleText} variant="h6">
-                {comicInfo.name}
-            </Typography>
+            <Typography noWrap className={classes.titleText} variant="h6">{comicInfo.name}</Typography>
             <img className={classes.thumbnail} src={comicInfo.images[0].src} alt={comicInfo.name} onClick={selectComic} />
             <Grid container direction="row">
                 <Grid item>
@@ -48,7 +46,7 @@ const Comic = ({ comic }) => {
                     <IconButton color="secondary" size="small" onClick={toggleInfoPopup}><PhotoAlbumIcon /></IconButton>
                 </Grid>
             </Grid>
-            <Popover className={classes.popupBox} open={deleteAnchor ? true : false} anchorEl={deleteAnchor} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} transformOrigin={{vertical: 'top', horizontal: 'left'}} onClose={toggleDeletePopup}>
+            <Popover open={deleteAnchor ? true : false} anchorEl={deleteAnchor} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} transformOrigin={{vertical: 'top', horizontal: 'left'}} onClose={toggleDeletePopup}>
                 <Box p={2}>
                     <Typography variant="body1">Delete comic?</Typography>
                     <Button color="secondary" size="small" onClick={doDeleteComic}>Yes</Button>
