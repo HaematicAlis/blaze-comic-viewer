@@ -30,7 +30,7 @@ export const addComic = (comicInfo) => async (dispatch) => {
         });
 
         const { data: comicData } = await api.addComic({ ...comicInfo, images: imageLinks });
-        const { data: newData } = await api.addImage({ id: comicData._id, image: images[0] });
+        const { data: newData } = await api.addImage({ id: comicData._id, image: { name: 'cover', size: 'size', fileType: 'fileType', src: imageLinks[0] } });
         dispatch({ type: ADD_COMIC, payload: newData });
     } catch (error) {
         console.log(error);
