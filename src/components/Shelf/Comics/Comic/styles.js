@@ -5,26 +5,24 @@ export default makeStyles((theme) => ({
         borderRadius: '5px',
         backgroundColor: '#888',
         filter: 'drop-shadow(-10px 4px 8px #000)',
+        margin: theme.spacing(3),
         padding: theme.spacing(1),
-        [theme.breakpoints.down('md')]: {
-            height: '44vh',
-        },
-        [theme.breakpoints.up('lg')]: {
-            height: '33vh',
-        },
+        width: '200px',
+        height: '350px',
     },
     thumbnail: {
         maxWidth: '100%',
+        maxHeight: '100%',
         border: '3px solid black',
         borderRadius: '5px',
-        [theme.breakpoints.down('md')]: {
-            maxHeight: '42vh',
-        },
-        [theme.breakpoints.up('lg')]: {
-            maxHeight: '26vh',
-        },
     },
     titleText: {
         color: 'white',
+    },
+    bottomBar: {
+        position: 'absolute',
+        bottom: '0',
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
     },
 }));

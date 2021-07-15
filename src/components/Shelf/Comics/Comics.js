@@ -23,11 +23,11 @@ const Comics = () => {
                     </Grid>
                 </Grid>
             ) : (
-                <Grid container direction="row" spacing={3}>
+                <Grid container direction="row" justify="center">
                 {!comics.length ? <CircularProgress color="secondary" /> : (
                     comics.map((comic) => {
                         return (
-                            <Grid item key={comic._id} xs={4} lg={2}>
+                            <Grid item key={comic._id}>
                                 <Comic comic={comic}/>
                             </Grid>
                         );

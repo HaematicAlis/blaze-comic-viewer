@@ -38,7 +38,7 @@ const Comic = ({ comic }) => {
         <Container className={classes.outerContainer} maxWidth={false} disableGutters>
             <Typography noWrap className={classes.titleText} variant="h6">{comicInfo.name}</Typography>
             <img className={classes.thumbnail} src={comicInfo.images[0].src} alt={comicInfo.name} onClick={selectComic} />
-            <Grid container direction="row">
+            <Grid container className={classes.bottomBar} direction="row">
                 <Grid item>
                     <IconButton color="secondary" size="small" onClick={toggleDeletePopup}><ClearIcon /></IconButton>
                 </Grid>
