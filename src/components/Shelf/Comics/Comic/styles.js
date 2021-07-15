@@ -23,7 +23,12 @@ export default makeStyles((theme) => ({
     bottomBar: {
         position: 'absolute',
         bottom: '0%',
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
+        padding: theme.spacing(1),
+    },
+    albumButton: {
+        flex: '1',
+    },
+    deleteButton: {
+        marginRight: theme.spacing(2),
     },
 }));

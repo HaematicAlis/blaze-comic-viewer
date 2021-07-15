@@ -39,11 +39,11 @@ const Comic = ({ comic }) => {
             <Typography noWrap className={classes.titleText} variant="h6">{comicInfo.name}</Typography>
             <img className={classes.thumbnail} src={comicInfo.images[0].src} alt={comicInfo.name} onClick={selectComic} />
             <Grid container className={classes.bottomBar} direction="row">
-                <Grid item>
-                    <IconButton color="secondary" size="small" onClick={toggleDeletePopup}><ClearIcon /></IconButton>
+                <Grid item className={classes.albumButton}>
+                    <IconButton color="secondary" size="small" edge="start" onClick={toggleInfoPopup}><PhotoAlbumIcon /></IconButton>
                 </Grid>
-                <Grid item>
-                    <IconButton color="secondary" size="small" onClick={toggleInfoPopup}><PhotoAlbumIcon /></IconButton>
+                <Grid item className={classes.deleteButton}>
+                    <IconButton color="secondary" size="small" edge="end" onClick={toggleDeletePopup}><ClearIcon /></IconButton>
                 </Grid>
             </Grid>
             <Popover open={deleteAnchor ? true : false} anchorEl={deleteAnchor} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} transformOrigin={{vertical: 'top', horizontal: 'left'}} onClose={toggleDeletePopup}>
