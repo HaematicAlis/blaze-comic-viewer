@@ -21,10 +21,9 @@ export default makeStyles((theme) => ({
             width: '60vw',
         },
         [theme.breakpoints.up('lg')]: {
-            marginTop: '20vh',
+            marginTop: '30vh',
             marginLeft: '3vw',
             marginRight: '3vw',
-            height: '40vh',
         },
     },
 }));

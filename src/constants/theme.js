@@ -25,7 +25,7 @@ const theme = createMuiTheme({
         MuiDrawer: {
             paper: {
                 backgroundColor: '#333',
-                height: '35vh',
+                height: '240px',
                 borderRadius: '5px',
             },
         },
