@@ -33,15 +33,13 @@ const Preview = () => {
     }
 
     const doUpload = () => {
-        const cover = selected[0];
-
         let name, album;
         comicName ? name = comicName : name = 'Untitled';
         imgurAlbum ? album = imgurAlbum : album = 'none';
 
-        const comic = { name: name, owner: session.id, album: album, images: selected };
+        const comic = { name: name, owner: session.id, album: album };
         setImgurAlbum('');
-        dispatch(addComic(comic, cover));
+        dispatch(addComic(comic));
     }
 
     const doImgurSelect = () => {
@@ -64,7 +62,7 @@ const Preview = () => {
                                 <FileBase64 className={classes.fileBase} multiple={true} onDone={getFiles.bind(this)}></FileBase64>
                             </Grid>
                             <Grid item>
-                                <Button disabled={selected.length ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
+                                <Button disabled={imgurAlbum ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>
                             </Grid>
                             <Grid item>
                                 <TextField variant="outlined" color="secondary" size="small" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
