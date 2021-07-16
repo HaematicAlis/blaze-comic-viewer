@@ -38,6 +38,7 @@ const Shelf = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        document.title = 'Shelf';
         if (session.id !== 0) {
             dispatch(getComics(session.id));
         }
