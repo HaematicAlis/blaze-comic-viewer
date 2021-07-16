@@ -12,10 +12,10 @@ const ImageData = () => {
             <Grid container direction="column" align="center">
                 <Grid item>
                     {selected[page] ? (<>
-                        <Typography variant="body1" color="secondary">{`Name: ${selected[page].name}`}</Typography>
-                        <Typography variant="body1" color="secondary">{`Size: ${selected[page].size}`}</Typography>
-                        <Typography variant="body1" color="secondary">{`Type: ${selected[page].fileType}`}</Typography></>
-                    ) : <Typography variant="body1" color="secondary">Not viewing any image.</Typography>}
+                        <Typography variant="body1" style={{color: '#ccc'}}>{`Name: ${selected[page].name}`}</Typography>
+                        <Typography variant="body1" style={{color: '#ccc'}}>{`Size: ${selected[page].size}`}</Typography>
+                        <Typography variant="body1" style={{color: '#ccc'}}>{`Type: ${selected[page].fileType}`}</Typography></>
+                    ) : <Typography variant="body1" style={{color: '#ccc'}}>Not viewing any image.</Typography>}
                 </Grid>
             </Grid>
         </Container>
