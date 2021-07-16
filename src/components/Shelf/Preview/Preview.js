@@ -9,7 +9,6 @@ import useStyles from './styles.js';
 const Preview = () => {
     const [comicName, setComicName] = useState('');
     const [imgurAlbum, setImgurAlbum] = useState('');
-    const [imgurError, setImgurError] = useState('');
     const session = useSelector((state) => state.session);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -35,11 +34,7 @@ const Preview = () => {
                                 <Typography variant="body1">Import a comic to get started.</Typography>
                             </Grid>
                             <Grid item>
-                                <TextField id="imgurField" variant="outlined" label="Imgur album hash" color="secondary" size="small"
-                                    onChange={(e) => setImgurAlbum(e.target.value)}
-                                    error={imgurError ? true : false}
-                                    helperText={imgurError}>
-                                </TextField>
+                                <TextField id="imgurField" variant="outlined" label="Imgur album hash" color="secondary" size="small" onChange={(e) => setImgurAlbum(e.target.value)}></TextField>
                             </Grid>
                             <Grid item>
                                 <TextField id="nameField" variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>
