@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addComic } from '../../../actions/comic.js';
+import { addComic } from '../../../../actions/comic.js';
 
 import { Typography, Container, Button, Paper, Grid, TextField } from '@material-ui/core';
 import useStyles from './styles.js';
 
-const Preview = () => {
+const Upload = () => {
     const [comicName, setComicName] = useState('');
     const [imgurAlbum, setImgurAlbum] = useState('');
     const session = useSelector((state) => state.session);
@@ -25,7 +25,7 @@ const Preview = () => {
 
     return (
         <Container className={classes.outerContainer} maxWidth={false}>
-            <Grid container spacing={2} direction="column" align="center">
+            <Grid container direction="column" align="center">
                 <Grid item>
                     <Paper className={classes.previewPaper}>
                         <Grid container spacing={2} direction="column" align="center" justify="center">
@@ -50,4 +50,4 @@ const Preview = () => {
     );
 }
 
-export default Preview;
+export default Upload;

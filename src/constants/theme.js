@@ -1,5 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
+import pink from '@material-ui/core/colors/pink';
 
 const theme = createMuiTheme({
     typography: {
@@ -10,6 +11,7 @@ const theme = createMuiTheme({
     },
     palette: {
         primary: green,
+        secondary: pink,
     },
     breakpoints: {
         values: {
@@ -24,18 +26,21 @@ const theme = createMuiTheme({
         MuiCssBaseline: {
             '@global': {
                 body: {
-                    backgroundColor: '#333',
-                },
-                '.MuiDrawer-paperAnchorRight': {
-                    backgroundColor: '#fdf',
+                    backgroundColor: '#222',
                 },
             },
         },
         MuiDrawer: {
             paper: {
-                backgroundColor: '#333',
+                backgroundColor: '#222',
                 height: '240px',
                 borderRadius: '5px',
+            },
+        },
+        MuiAccordion: {
+            root: {
+                backgroundColor: '#555',
+                color: '#ccc',
             },
         },
     },

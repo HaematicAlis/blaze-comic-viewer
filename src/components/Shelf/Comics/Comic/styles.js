@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
     outerContainer: {
         borderRadius: '5px',
-        backgroundColor: '#888',
+        backgroundColor: '#555',
         position: 'relative',
         filter: 'drop-shadow(-10px 4px 8px #000)',
         margin: theme.spacing(3),
@@ -14,11 +14,12 @@ export default makeStyles((theme) => ({
     thumbnail: {
         maxWidth: '100%',
         maxHeight: '100%',
-        border: '3px solid black',
+        border: '3px solid',
+        borderColor: '#222',
         borderRadius: '5px',
     },
     titleText: {
-        color: 'white',
+        color: '#ccc',
     },
     bottomBar: {
         position: 'absolute',
@@ -30,5 +31,11 @@ export default makeStyles((theme) => ({
     },
     deleteButton: {
         marginRight: theme.spacing(2),
+    },
+    albumIcon: {
+        color: '#ccc',
+    },
+    deleteIcon: {
+        color: theme.palette.secondary.main,
     },
 }));

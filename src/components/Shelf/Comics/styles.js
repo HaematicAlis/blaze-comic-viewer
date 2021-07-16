@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     outerContainer: {
-        backgroundColor: '#333',
+        backgroundColor: '#222',
         paddingTop: theme.spacing(2),
         [theme.breakpoints.down('md')]: {
             minWidth: '100vw',

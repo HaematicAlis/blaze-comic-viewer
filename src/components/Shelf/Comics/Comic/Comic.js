@@ -40,10 +40,10 @@ const Comic = ({ comic }) => {
             <img className={classes.thumbnail} src={comicInfo.images[0].src} alt={comicInfo.name} onClick={selectComic} />
             <Grid container className={classes.bottomBar} direction="row">
                 <Grid item className={classes.albumButton}>
-                    <IconButton color="secondary" size="small" edge="start" onClick={toggleInfoPopup}><PhotoAlbumIcon /></IconButton>
+                    <IconButton className={classes.albumIcon} size="small" edge="start" onClick={toggleInfoPopup}><PhotoAlbumIcon /></IconButton>
                 </Grid>
                 <Grid item className={classes.deleteButton}>
-                    <IconButton color="secondary" size="small" edge="end" onClick={toggleDeletePopup}><ClearIcon /></IconButton>
+                    <IconButton className={classes.deleteIcon} size="small" edge="end" onClick={toggleDeletePopup}><ClearIcon /></IconButton>
                 </Grid>
             </Grid>
             <Popover open={deleteAnchor ? true : false} anchorEl={deleteAnchor} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} transformOrigin={{vertical: 'top', horizontal: 'left'}} onClose={toggleDeletePopup}>
