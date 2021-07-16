@@ -16,7 +16,9 @@ const Comics = () => {
     const classes = useStyles();
 
     const doNextPage = () => {
-        dispatch(setPage(page + 1));
+        if (page < selected.length - 1) {
+            dispatch(setPage(page + 1));
+        }
     }
 
     return (
