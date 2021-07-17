@@ -1,5 +1,4 @@
 import * as api from '../api';
-
 import { GET_COMICS, ADD_COMIC, DELETE_COMIC } from '../constants/actionTypes.js';
 
 export const getComics = (id) => async (dispatch) => {
@@ -11,9 +10,10 @@ export const getComics = (id) => async (dispatch) => {
     }
 }
 
-export const addComic = (comicInfo) => async (dispatch) => {
+export const addComicImgur = (comicInfo) => async (dispatch) => {
     try {
-        var url = `https://api.imgur.com/3/album/${comicInfo.album}`;
+        const split = comicInfo.album.split('/');
+        var url = `https://api.imgur.com/3/album/${split[4]}`;
         var formData = new FormData();
 
         var config = {

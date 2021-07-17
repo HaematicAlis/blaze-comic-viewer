@@ -19,7 +19,9 @@ const Comic = ({ comic }) => {
 
     const selectComic = () => {
         dispatch(setPage(0))
-        .then(dispatch(select(comicInfo.images)));
+        .then(() => {
+            dispatch(select(comicInfo.images))
+        });
     }
 
     const doDeleteComic = () => {
