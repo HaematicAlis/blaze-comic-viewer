@@ -60,6 +60,7 @@ const Comic = ({ comic }) => {
                     <Typography variant="body1">Title: {comicInfo.name}</Typography>
                     <Typography variant="body1">Album: <a href={comicInfo.album} target="_blank"rel="noreferrer">{comicInfo.album}</a></Typography>
                     <Typography variant="body1">Pages: {comicInfo.images.length}</Typography>
+                    <Typography variant="body1">Date Added: {comicInfo.dateCreated}</Typography>
                 </Box>
             </Popover>
         </Container>
