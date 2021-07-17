@@ -10,7 +10,6 @@ import Logout from './Logout/Logout.js';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ImageIcon from '@material-ui/icons/Image';
 import PublishIcon from '@material-ui/icons/Publish';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import { Accordion, AccordionSummary, AccordionDetails, Container } from '@material-ui/core';
@@ -43,14 +42,6 @@ const Menu = () => {
             <Accordion expanded={expanded === 'vocab'} onChange={handleChange('vocab')}>
                 <AccordionSummary>
                     <MenuBookIcon />&nbsp;Vocab
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Vocab />
-                </AccordionDetails>
-            </Accordion>
-            <Accordion expanded={expanded === 'word'} onChange={handleChange('word')}>
-                <AccordionSummary>
-                    <PostAddIcon />&nbsp;Add Word
                 </AccordionSummary>
                 <AccordionDetails>
                     <Vocab />

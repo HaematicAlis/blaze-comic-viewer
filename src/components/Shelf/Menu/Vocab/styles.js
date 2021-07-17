@@ -1,12 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-    outerContainer: {
-        
+    wordAccordion: {
+        backgroundColor: '#ccc',
     },
-    wordContainer: {
-        backgroundColor: '#888',
-        padding: theme.spacing(1),
-        margin: theme.spacing(1),
+    vocabInfoGrid: {
+        marginTop: theme.spacing(2),
     },
 }));

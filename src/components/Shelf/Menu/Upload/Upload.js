@@ -19,8 +19,8 @@ const Upload = () => {
 
         const comic = { name: name, owner: session.id, album: album };
 
-        document.getElementById('imgurField').value = '';
-        document.getElementById('nameField').value = '';
+        document.getElementById('imgurField').value = null;
+        document.getElementById('nameField').value = null;
 
         if (album.includes('imgur')) {
             dispatch(addComicImgur(comic));

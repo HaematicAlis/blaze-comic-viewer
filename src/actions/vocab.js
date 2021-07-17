@@ -21,7 +21,7 @@ export const getAllVocab = (id) => async (dispatch) => {
 
 export const addVocab = (vocabInfo) => async (dispatch) => {
     try {
-        const { data } = await api.addVocab({ comic: vocabInfo.comic, page: vocabInfo.page, term: vocabInfo.term, gloss: vocabInfo.gloss });
+        const { data } = await api.addVocab(vocabInfo);
         dispatch({ type: ADD_VOCAB, payload: data });
     } catch (error) {
         console.log(error);

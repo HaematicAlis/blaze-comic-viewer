@@ -30,6 +30,11 @@ const theme = createMuiTheme({
                 },
             },
         },
+        MuiPaper: {
+            root: {
+                backgroundColor: '#ccc',
+            },
+        },
         MuiDrawer: {
             paper: {
                 backgroundColor: '#222',
