@@ -10,7 +10,6 @@ export default makeStyles((theme) => ({
         height: '50px',
     },
     toolbarPageControl: {
-        marginRight: theme.spacing(2),
         flex: 1,
     },
     toolbarButton: {
