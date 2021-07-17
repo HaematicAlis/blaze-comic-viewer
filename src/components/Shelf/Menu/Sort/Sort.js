@@ -17,6 +17,14 @@ const Sort = () => {
         dispatch(getComics(session.id, 'revAlphabetical'));
     }
 
+    const sortDate = () => {
+        dispatch(getComics(session.id, 'date'));
+    }
+
+    const sortRevDate = () => {
+        dispatch(getComics(session.id, 'revDate'));
+    }
+
     return (
         <Container maxWidth={false}>
             <Grid container direction="column" align="center">
@@ -25,6 +33,12 @@ const Sort = () => {
                 </Grid>
                 <Grid item>
                     <Button variant="contained" color="secondary" onClick={sortRevAlphabetical}>Reverse Alphabetical</Button>
+                </Grid>
+                <Grid item>
+                    <Button variant="contained" color="secondary" onClick={sortDate}>Date</Button>
+                </Grid>
+                <Grid item>
+                    <Button variant="contained" color="secondary" onClick={sortRevDate}>Reverse Date</Button>
                 </Grid>
             </Grid>
         </Container>
