@@ -1,9 +1,9 @@
 import * as api from '../api';
 import { GET_COMICS, ADD_COMIC, DELETE_COMIC } from '../constants/actionTypes.js';
 
-export const getComics = (id) => async (dispatch) => {
+export const getComics = (id, sort) => async (dispatch) => {
     try {
-        const { data } = await api.getComics({ id: id });
+        const { data } = await api.getComics({ id: id, sort: sort });
         dispatch({ type: GET_COMICS, payload: data });
     } catch (error) {
         console.log(error);

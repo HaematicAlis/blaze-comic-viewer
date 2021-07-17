@@ -3,14 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { cookies } from '../../../index.js';
 import Upload from './Upload/Upload.js';
 import Vocab from './Vocab/Vocab.js';
-import Logout from './Logout/Logout.js';
+import Sort from './Sort/Sort.js';
 import ImageData from './ImageData/ImageData.js';
+import Logout from './Logout/Logout.js';
 
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ImageIcon from '@material-ui/icons/Image';
 import PublishIcon from '@material-ui/icons/Publish';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import { Accordion, AccordionSummary, AccordionDetails, Container } from '@material-ui/core';
 import useStyles from './styles.js';
 
@@ -52,6 +54,14 @@ const Menu = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Vocab />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion expanded={expanded === 'sort'} onChange={handleChange('sort')}>
+                <AccordionSummary>
+                    <SwapHorizIcon />&nbsp;Sort By
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Sort />
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'imageData'} onChange={handleChange('imageData')}>

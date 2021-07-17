@@ -36,7 +36,7 @@ const Shelf = () => {
         let sb = cookies.get('Sidebar');
         sb && setSidebarVisible(sb === 'true');
         if (session.id !== 0) {
-            dispatch(getComics(session.id));
+            dispatch(getComics(session.id, 'none'));
         }
     }, [dispatch, session.id]);
 
