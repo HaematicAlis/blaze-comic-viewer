@@ -40,10 +40,10 @@ const Upload = () => {
                                 <Typography variant="body1">Import a comic to get started.</Typography>
                             </Grid>
                             <Grid item>
-                                <TextField id="imgurField" variant="outlined" label="Imgur album hash" color="secondary" size="small" onChange={(e) => setAlbum(e.target.value)}></TextField>
+                                <TextField id="imgurField" variant="outlined" label="Imgur album link" color="secondary" size="small" onChange={(e) => setAlbum(e.target.value)}></TextField>
                             </Grid>
                             <Grid item>
-                                <TextField id="nameField" variant="outlined" label="Give your comic a name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>
+                                <TextField id="nameField" variant="outlined" label="Comic name" color="secondary" size="small" onChange={(e) => setComicName(e.target.value)}></TextField>
                             </Grid>
                             <Grid item>
                                 <Button disabled={album ? false : true} variant="outlined" color="secondary" onClick={doUpload}>Upload</Button>

@@ -5,16 +5,15 @@ export default makeStyles((theme) => ({
         
     },
     previewPaper: {
-        align: 'center',
         padding: theme.spacing(5),
         margin: theme.spacing(3),
         [theme.breakpoints.down('md')]: {
             marginTop: theme.spacing(3),
-            width: '60vw',
+            width: '70vw',
         },
         [theme.breakpoints.up('lg')]: {
-            marginLeft: '3vw',
-            marginRight: '3vw',
+            marginLeft: '1vw',
+            marginRight: '1vw',
         },
     },
 }));
