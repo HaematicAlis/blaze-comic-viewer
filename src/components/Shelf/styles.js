@@ -14,6 +14,6 @@ export default makeStyles((theme) => ({
         flex: 1,
     },
     toolbarButton: {
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(1),
     },
 }));

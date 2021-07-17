@@ -17,6 +17,8 @@ const Logout = () => {
             .then(() => {
                 cookies.remove('ID');
                 cookies.remove('Username');
+                cookies.remove('Expanded');
+                cookies.remove('Sidebar');
                 dispatch(clearSelected());
             });
         }

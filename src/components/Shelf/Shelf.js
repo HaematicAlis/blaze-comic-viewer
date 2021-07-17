@@ -20,6 +20,7 @@ import ClearAllIcon from '@material-ui/icons/ClearAll';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './styles.js';
+import { cookies } from '../../index.js';
 
 const Shelf = () => {
     const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -32,6 +33,8 @@ const Shelf = () => {
 
     useEffect(() => {
         document.title = 'Shelf';
+        let sb = cookies.get('Sidebar');
+        sb && setSidebarVisible(sb === 'true');
         if (session.id !== 0) {
             dispatch(getComics(session.id));
         }
@@ -68,6 +71,7 @@ const Shelf = () => {
     }
 
     const toggleSidebar = () => {
+        cookies.set('Sidebar', sidebarVisible ? false : true, { secure: true });
         sidebarVisible ? setSidebarVisible(false) : setSidebarVisible(true);
     }
 

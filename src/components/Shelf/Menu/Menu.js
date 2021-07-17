@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { cookies } from '../../../index.js';
 import Upload from './Upload/Upload.js';
 import Vocab from './Vocab/Vocab.js';
 import Logout from './Logout/Logout.js';
@@ -14,11 +15,17 @@ import { Accordion, AccordionSummary, AccordionDetails, Container } from '@mater
 import useStyles from './styles.js';
 
 const Menu = () => {
-    const [expanded, setExpanded] = useState('upload');
+    const [expanded, setExpanded] = useState(false);
     const classes = useStyles();
+
+    useEffect(() => {
+        let exp = cookies.get('Expanded');
+        exp && setExpanded(exp);
+    }, [expanded]);
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
+        cookies.set('Expanded', newExpanded ? panel : false, { secure: true });
     };
 
     return (
