@@ -16,7 +16,7 @@ const Comics = () => {
     const classes = useStyles();
 
     const doNextPage = () => {
-        if (page < selected.length - 1) {
+        if (page < selected.images.length - 1) {
             dispatch(setPage(page + 1));
         }
     }
@@ -24,10 +24,10 @@ const Comics = () => {
     return (
         <Container className={classes.outerContainer} maxWidth={false}>
         {
-            selected.length ? (
+            selected.images.length ? (
                 <Grid container direction="column" justify="center" align="center">
                     <Grid item>
-                        <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected[page].src} alt={selected[page].name} onClick={doNextPage} justify="center" />
+                        <img className={viewOptions.mode ? classes.comicImageWide : classes.comicImage} src={selected.images[page].src} alt={selected.images[page].name} onClick={doNextPage} justify="center" />
                     </Grid>
                 </Grid>
             ) : (

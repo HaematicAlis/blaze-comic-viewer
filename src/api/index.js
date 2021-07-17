@@ -15,3 +15,8 @@ export const addImage = (imageInfo) => axios.post(url + '/comic/addImage', image
 
 // imgur api
 export const getAlbum = (info) => axios.get(info.url, info.config, info.formData);
+
+// vocab
+export const getVocab = (id) => axios.post(url + '/vocab/get', id);
+export const addVocab = (vocabInfo) => axios.post(url + '/vocab/add', vocabInfo);
+export const deleteVocab = (id) => axios.post(url + '/vocab/delete', id);

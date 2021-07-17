@@ -17,3 +17,8 @@ export const SET_PAGE = 'SET_PAGE';
 
 // viewOptions
 export const SET_MODE = 'SET_MODE';
+
+// vocab
+export const GET_VOCAB = 'GET_VOCAB';
+export const ADD_VOCAB = 'ADD_VOCAB';
+export const DELETE_VOCAB = 'DELETE_VOCAB';

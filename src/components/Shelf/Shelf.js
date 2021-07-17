@@ -58,14 +58,14 @@ const Shelf = () => {
         }
     }
 
-    function doPrev() {
+    const doPrev = () => {
         if (page > 0) {
             dispatch(setPage(page - 1));
         }
     }
 
     const doNext = () => {
-        if (page < selected.length - 1) {
+        if (page < selected.images.length - 1) {
             dispatch(setPage(page + 1));
         }
     }
@@ -88,13 +88,13 @@ const Shelf = () => {
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doPrev}><NavigateBeforeIcon /></IconButton>
                         </Grid>
                         <Grid item>
-                            <IconButton className={classes.toolbarButton} size="small" color="secondary">{`${page+1}/${selected.length}`}</IconButton>
+                            <IconButton className={classes.toolbarButton} size="small" color="secondary">{`${page+1}/${selected.images.length}`}</IconButton>
                         </Grid>
                         <Grid item>
                             <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doNext}><NavigateNextIcon /></IconButton>
                         </Grid>
                         <Grid item>
-                            <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={() => dispatch(setPage(selected.length-1))}><SkipNextIcon /></IconButton>
+                            <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={() => dispatch(setPage(selected.images.length-1))}><SkipNextIcon /></IconButton>
                         </Grid>
                     </Grid>
                     <IconButton className={classes.toolbarButton} size="small" color="secondary" onClick={doClear}><HomeIcon /></IconButton>
