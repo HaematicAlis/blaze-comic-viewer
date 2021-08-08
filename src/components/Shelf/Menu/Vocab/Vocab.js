@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import { getVocab, addVocab, deleteVocab } from '../../../../actions/vocab.js';
+import { getAllVocab, addVocab, deleteVocab } from '../../../../actions/vocab.js';
 
 import { Container, Typography, Grid, Button, TextField, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import useStyles from './styles.js';
@@ -18,7 +18,7 @@ const Vocab = () => {
 
     useEffect(() => {
         if (selected.images.length > 0) {
-            dispatch(getVocab(selected._id, page));
+            dispatch(getAllVocab(selected._id));
         }
     }, [dispatch, selected, page]);
 
@@ -44,29 +44,35 @@ const Vocab = () => {
                     {selected.images.length > 0 ? (
                     <Grid item>
                             {vocab.map((word) => {
-                                return (
-                                    <Accordion key={word._id} className={classes.wordAccordion} expanded={expanded === word.term} onChange={handleChange(word.term)}>
-                                        <AccordionSummary>
-                                            <Typography style={{color: '#333'}} variant="body1">・&nbsp;{word.term}</Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Grid container direction="column" align="left" spacing={2}>
-                                                <Grid item>
-                                                    <TextField size="small" label="Gloss" value={word.gloss} color="secondary" />
+                                if (word.page === page) {
+                                    return (
+                                        <Accordion key={word._id} className={classes.wordAccordion} expanded={expanded === word.term} onChange={handleChange(word.term)}>
+                                            <AccordionSummary>
+                                                <Typography style={{color: '#333'}} variant="body1">・&nbsp;{word.term}</Typography>
+                                            </AccordionSummary>
+                                            <AccordionDetails>
+                                                <Grid container direction="column" align="left" spacing={2}>
+                                                    <Grid item>
+                                                        <TextField size="small" label="Gloss" value={word.gloss} color="secondary" />
+                                                    </Grid>
+                                                    <Grid item>
+                                                        <TextField size="small" label="Reading" value={word.reading} color="secondary" />
+                                                    </Grid>
+                                                    <Grid item>
+                                                    <TextField size="small" label="Notes" value={word.notes} color="secondary" />
+                                                    </Grid>
+                                                    <Grid item>
+                                                        <Button size="small" color="secondary" onClick={() => doDeleteVocab(word._id)}>Delete</Button>
+                                                    </Grid>
                                                 </Grid>
-                                                <Grid item>
-                                                    <TextField size="small" label="Reading" value={word.reading} color="secondary" />
-                                                </Grid>
-                                                <Grid item>
-                                                <TextField size="small" label="Notes" value={word.notes} color="secondary" />
-                                                </Grid>
-                                                <Grid item>
-                                                    <Button size="small" color="secondary" onClick={() => doDeleteVocab(word._id)}>Delete</Button>
-                                                </Grid>
-                                            </Grid>
-                                        </AccordionDetails>
-                                    </Accordion>
-                                );
+                                            </AccordionDetails>
+                                        </Accordion>
+                                    );
+                                } else {
+                                    return (
+                                        <></>
+                                    )
+                                }
                             })}
                             <Accordion className={classes.wordAccordion} expanded={expanded === 'bcv!addWord'} onChange={handleChange('bcv!addWord')}>
                                 <AccordionSummary>

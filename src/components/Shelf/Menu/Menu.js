@@ -4,14 +4,18 @@ import { cookies } from '../../../index.js';
 import Upload from './Upload/Upload.js';
 import Vocab from './Vocab/Vocab.js';
 import Sort from './Sort/Sort.js';
+import Pages from './Pages/Pages.js';
 import ImageData from './ImageData/ImageData.js';
+import Changelog from './Changelog/Changelog.js';
 import Logout from './Logout/Logout.js';
 
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ImageIcon from '@material-ui/icons/Image';
 import PublishIcon from '@material-ui/icons/Publish';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+import CallSplitIcon from '@material-ui/icons/CallSplit';
 import { Accordion, AccordionSummary, AccordionDetails, Container } from '@material-ui/core';
 import useStyles from './styles.js';
 
@@ -47,6 +51,14 @@ const Menu = () => {
                     <Vocab />
                 </AccordionDetails>
             </Accordion>
+            <Accordion expanded={expanded === 'pages'} onChange={handleChange('pages')}>
+                <AccordionSummary>
+                    <FormatListNumberedIcon />&nbsp;Pages
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Pages />
+                </AccordionDetails>
+            </Accordion>
             <Accordion expanded={expanded === 'sort'} onChange={handleChange('sort')}>
                 <AccordionSummary>
                     <SwapHorizIcon />&nbsp;Sort By
@@ -61,6 +73,14 @@ const Menu = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <ImageData />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion expanded={expanded === 'changelog'} onChange={handleChange('changelog')}>
+                <AccordionSummary>
+                    <CallSplitIcon />&nbsp;Changelog
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Changelog />
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'logout'} onChange={handleChange('logout')}>
