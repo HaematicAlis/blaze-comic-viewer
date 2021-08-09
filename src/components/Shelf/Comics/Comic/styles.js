@@ -42,6 +42,12 @@ export default makeStyles((theme) => ({
     albumIcon: {
         color: '#ccc',
     },
+    checkIcon: {
+        color: theme.palette.primary.main,
+        backgroundColor: '#fff',
+        outline: '5px solid #555',
+        outlineOffset: '-3px',
+    },
     deleteIcon: {
         color: theme.palette.secondary.main,
     },

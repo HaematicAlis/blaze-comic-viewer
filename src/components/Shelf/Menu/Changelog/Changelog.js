@@ -11,6 +11,17 @@ const Changelog = () => {
         <Container maxWidth={false}>
             <Grid container direction="column" align="left">
                 <Grid item>
+                    <Typography variant="h4" className={classes.version}>1.0.2</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Comics or pages can be marked as done</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Color in page menu will change based on status</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Gray: No words, not done (new)</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Yellow: Words, not done (WIP)</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Red: Words, done (learning)</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Green: No words, done (learned)</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Full vocabulary list with count under comic thumbnail</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Vocab list changes to green check when comic is done</Typography>
+                </Grid>
+                <Grid item>
                     <Typography variant="h4" className={classes.version}>1.0.1</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Pages section added to menu</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Click to select a page</Typography>
