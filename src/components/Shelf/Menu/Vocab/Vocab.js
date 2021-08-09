@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { getAllVocab, addVocab, deleteVocab } from '../../../../actions/vocab.js';
 
 import { Container, Typography, Grid, Button, TextField, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
@@ -36,6 +37,15 @@ const Vocab = () => {
 
     const doDeleteVocab = (id) => {
         dispatch(deleteVocab(id));
+    }
+
+    const wordsOnPage = () => {
+        for (var i = 0; i < vocab.length; i++) {
+            if (vocab[i].page === page) {
+                return true;
+            }
+        }
+        return false;
     }
 
     return (
@@ -74,9 +84,13 @@ const Vocab = () => {
                                     )
                                 }
                             })}
+                            {selected.images[page].done && !wordsOnPage() ? (<>
+                                <CheckCircleIcon className={classes.checkIcon} />
+                                <Typography className={classes.congratsText} variant="body1">Congrats! This page is done.</Typography></>
+                            ) : <></>}
                             <Accordion className={classes.wordAccordion} expanded={expanded === 'bcv!addWord'} onChange={handleChange('bcv!addWord')}>
                                 <AccordionSummary>
-                                    <Typography style={{color: '#333'}} variant="body1"f><PostAddIcon />&nbsp;Add Word</Typography>
+                                    <Typography style={{color: '#333'}} variant="body1"><PostAddIcon />&nbsp;Add Word</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                 <Grid container className={classes.vocabInfoGrid} direction="column" align="center" spacing={1}>

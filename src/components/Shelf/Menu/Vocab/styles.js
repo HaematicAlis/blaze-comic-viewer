@@ -7,4 +7,11 @@ export default makeStyles((theme) => ({
     vocabInfoGrid: {
         marginTop: theme.spacing(2),
     },
+    congratsText: {
+        color: theme.palette.primary.main,
+        padding: theme.spacing(1),
+    },
+    checkIcon: {
+        color: theme.palette.primary.main,
+    },
 }));

@@ -15,6 +15,7 @@ const Changelog = () => {
                     <Typography variant="body1" className={classes.bullet}>• Comic page menu looks prettier</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Default red check means page is not done yet</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Clicking it toggles to green check which means that page is done</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Vocab menu shows check mark and congrats if page is done with no words</Typography>
                 </Grid>
                 <Grid item>
                     <Typography variant="h4" className={classes.version}>1.0.2</Typography>
