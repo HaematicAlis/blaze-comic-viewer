@@ -11,6 +11,12 @@ const Changelog = () => {
         <Container maxWidth={false}>
             <Grid container direction="column" align="left">
                 <Grid item>
+                    <Typography variant="h4" className={classes.version}>1.0.3</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Comic page menu looks prettier</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Default red check means page is not done yet</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Clicking it toggles to green check which means that page is done</Typography>
+                </Grid>
+                <Grid item>
                     <Typography variant="h4" className={classes.version}>1.0.2</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Comics or pages can be marked as done</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Color in page menu will change based on status</Typography>
