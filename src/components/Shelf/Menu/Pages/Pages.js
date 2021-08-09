@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setPage } from '../../../../actions/page.js';
 import { setDone, setComicDone } from '../../../../actions/comic.js';
 
-import { Container, Grid, Typography, Button } from '@material-ui/core';
+import { Container, Grid, Typography, Button, IconButton } from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import useStyles from './styles.js';
 
 const Pages = () => {
@@ -98,17 +99,25 @@ const Pages = () => {
                     {selected.images[page] ? (<>
                             {selected.images.map((image, index) => {
                                 return(
-                                    <Grid container key={index} direction="row" align="center">
+                                    <Grid container key={index} direction="row" align="center" spacing={1}>
                                         <Grid item>
                                             <Button variant="outlined" className={getVocabState(index)} onClick={() => doSetPage(index)}>Page {index+1}</Button>
                                         </Grid>
                                         <Grid item>
-                                            <Button variant="outlined" color={selected.images[index].done ? "primary" : "secondary"} onClick={() => markDone(index)}>Done</Button>
+                                            <IconButton className={selected.images[index].done ? classes.checkIcon : classes.redCheckIcon}
+                                                variant="outlined" size="small"
+                                                color={selected.images[index].done ? "primary" : "secondary"}
+                                                onClick={() => markDone(index)}><CheckCircleIcon />
+                                            </IconButton>
                                         </Grid>
                                     </Grid>
                                 );
                             })}
-                            <Button variant="outlined" color={selected.done ? "primary" : "secondary"} onClick={markComicDone}>{selected.done ? 'Mark Comic New' : 'Mark Comic Done'}</Button>
+                            <Button className={classes.comicDoneButton} variant="outlined"
+                                color={selected.done ? "primary" : "secondary"}
+                                onClick={markComicDone}>
+                                {selected.done ? 'Mark Comic New' : 'Mark Comic Done'}
+                            </Button>
                         </>
                     ) : <Typography variant="body1" className={classes.text}>Not viewing any comic.</Typography>}
                 </Grid>
