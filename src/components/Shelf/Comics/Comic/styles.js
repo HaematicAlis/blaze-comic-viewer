@@ -18,6 +18,13 @@ export default makeStyles((theme) => ({
         borderColor: '#222',
         borderRadius: '5px',
     },
+    doneThumbnail: {
+        maxWidth: '100%',
+        maxHeight: '100%',
+        border: '3px solid',
+        borderColor: '#0f0',
+        borderRadius: '5px',
+    },
     titleText: {
         color: '#ccc',
     },

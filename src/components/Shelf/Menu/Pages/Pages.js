@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setPage } from '../../../../actions/page.js';
+import { setDone, setComicDone } from '../../../../actions/comic.js';
 
 import { Container, Grid, Typography, Button } from '@material-ui/core';
 import useStyles from './styles.js';
@@ -20,12 +21,20 @@ const Pages = () => {
             var found = false;
             vocab.forEach((word) => {
                 if (!found && word.page === index) {
-                    arr.push(1);
                     found = true;
+                    if (image.done) {
+                        arr.push(2);
+                    } else {
+                        arr.push(3);
+                    }
                 }
             });
             if (!found) {
-                arr.push(0);
+                if (!image.done) {
+                    arr.push(0);
+                } else {
+                    arr.push(1);
+                }
             }
         });
         setVocabStates(arr);
@@ -49,13 +58,37 @@ const Pages = () => {
                 } else {
                     return classes.greenButton;
                 }
+            case 2:
+                if (page === index) {
+                    return `${classes.redButton} ${classes.selectedPage}`;
+                } else {
+                    return classes.redButton;
+                }
+            case 3:
+                if (page === index) {
+                    return `${classes.yellowButton} ${classes.selectedPage}`;
+                } else {
+                    return classes.yellowButton;
+                }
             default:
                 return classes.blankButton;
         }
     }
 
     const markDone = (index) => {
-        vocabStates[index] = 1;
+        if (selected.images[index].done) {
+            dispatch(setDone(selected._id, index, false));
+        } else {
+            dispatch(setDone(selected._id, index, true));
+        }
+    }
+
+    const markComicDone = () => {
+        if (selected.done) {
+            dispatch(setComicDone(selected._id, false));
+        } else {
+            dispatch(setComicDone(selected._id, true));
+        }
     }
 
     return (
@@ -70,11 +103,12 @@ const Pages = () => {
                                             <Button variant="outlined" className={getVocabState(index)} onClick={() => doSetPage(index)}>Page {index+1}</Button>
                                         </Grid>
                                         <Grid item>
-                                            <Button variant="outlined" color="secondary" onClick={() => markDone(index)}>Done</Button>
+                                            <Button variant="outlined" color={selected.images[index].done ? "primary" : "secondary"} onClick={() => markDone(index)}>Done</Button>
                                         </Grid>
                                     </Grid>
                                 );
                             })}
+                            <Button variant="outlined" color={selected.done ? "primary" : "secondary"} onClick={markComicDone}>{selected.done ? 'Mark Comic New' : 'Mark Comic Done'}</Button>
                         </>
                     ) : <Typography variant="body1" className={classes.text}>Not viewing any comic.</Typography>}
                 </Grid>

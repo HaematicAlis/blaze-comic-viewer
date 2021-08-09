@@ -7,11 +7,17 @@ export default makeStyles((theme) => ({
     greenButton: {
         backgroundColor: theme.palette.primary.main,
     },
+    redButton: {
+        backgroundColor: theme.palette.secondary.main,
+    },
+    yellowButton: {
+        backgroundColor: '#ff0',
+    },
     blankButton: {
         backgroundColor: '#ccc',
     },
     selectedPage: {
         borderColor: '#0ff',
-        borderRadius: '5px',
+        borderWidth: '3px',
     },
 }));

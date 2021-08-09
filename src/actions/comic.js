@@ -1,5 +1,5 @@
 import * as api from '../api';
-import { GET_COMICS, ADD_COMIC, DELETE_COMIC } from '../constants/actionTypes.js';
+import { GET_COMICS, ADD_COMIC, DELETE_COMIC, UPDATE_COMIC, SELECT } from '../constants/actionTypes.js';
 
 export const getComics = (id, sort) => async (dispatch) => {
     try {
@@ -40,6 +40,26 @@ export const deleteComic = (id) => async (dispatch) => {
     try {
         await api.deleteComic({ id: id });
         dispatch({ type: DELETE_COMIC, payload: id });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const setDone = (id, index, done) => async (dispatch) => {
+    try {
+        const { data } = await api.setDone({ id: id, index: index, done: done });
+        await dispatch({ type: SELECT, payload: data });
+        dispatch({ type: UPDATE_COMIC, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const setComicDone = (id, done) => async (dispatch) => {
+    try {
+        const { data } = await api.setComicDone({ id: id, done: done });
+        await dispatch({ type: SELECT, payload: data });
+        dispatch({ type: UPDATE_COMIC, payload: data });
     } catch (error) {
         console.log(error);
     }

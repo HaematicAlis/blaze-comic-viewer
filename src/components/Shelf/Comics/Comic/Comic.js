@@ -39,7 +39,7 @@ const Comic = ({ comic }) => {
     return (
         <Container className={classes.outerContainer} maxWidth={false} disableGutters>
             <Typography noWrap className={classes.titleText} variant="h6">{comicInfo.name}</Typography>
-            <img className={classes.thumbnail} src={comicInfo.images[0].src} alt={comicInfo.name} onClick={selectComic} />
+            <img className={comicInfo.done ? classes.doneThumbnail : classes.thumbnail} src={comicInfo.images[0].src} alt={comicInfo.name} onClick={selectComic} />
             <Grid container className={classes.bottomBar} direction="row">
                 <Grid item className={classes.albumButton}>
                     <IconButton className={classes.albumIcon} size="small" edge="start" onClick={toggleInfoPopup}><PhotoAlbumIcon /></IconButton>
