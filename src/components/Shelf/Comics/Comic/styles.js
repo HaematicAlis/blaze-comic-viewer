@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
         maxWidth: '100%',
         maxHeight: '100%',
         border: '3px solid',
-        borderColor: '#0f0',
+        borderColor: theme.palette.primary.main,
         borderRadius: '5px',
     },
     titleText: {

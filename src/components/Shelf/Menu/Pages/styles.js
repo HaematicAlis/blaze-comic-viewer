@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     greenButton: {
         backgroundColor: theme.palette.primary.main,
         [theme.breakpoints.down('md')]: {
-            width: '83vw',
+            width: '60vw',
         },
         [theme.breakpoints.up('lg')]: {
             width: '21vw',
@@ -16,7 +16,7 @@ export default makeStyles((theme) => ({
     redButton: {
         backgroundColor: theme.palette.secondary.main,
         [theme.breakpoints.down('md')]: {
-            width: '83vw',
+            width: '60vw',
         },
         [theme.breakpoints.up('lg')]: {
             width: '21vw',
@@ -25,7 +25,7 @@ export default makeStyles((theme) => ({
     yellowButton: {
         backgroundColor: '#ff0',
         [theme.breakpoints.down('md')]: {
-            width: '83vw',
+            width: '60vw',
         },
         [theme.breakpoints.up('lg')]: {
             width: '21vw',
@@ -34,7 +34,7 @@ export default makeStyles((theme) => ({
     blankButton: {
         backgroundColor: '#ccc',
         [theme.breakpoints.down('md')]: {
-            width: '83vw',
+            width: '60vw',
         },
         [theme.breakpoints.up('lg')]: {
             width: '21vw',
