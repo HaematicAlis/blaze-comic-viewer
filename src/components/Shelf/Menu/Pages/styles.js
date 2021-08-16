@@ -49,14 +49,8 @@ export default makeStyles((theme) => ({
     },
     checkIcon: {
         color: theme.palette.primary.main,
-        backgroundColor: '#fff',
-        outline: '5px solid #555',
-        outlineOffset: '-3px',
     },
     redCheckIcon: {
         color: '#f00',
-        backgroundColor: '#fff',
-        outline: '5px solid #555',
-        outlineOffset: '-3px',
     },
 }));
