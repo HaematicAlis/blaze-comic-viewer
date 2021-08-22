@@ -12,6 +12,7 @@ const Changelog = () => {
             <Grid container direction="column" align="left">
                 <Grid item>
                     <Typography variant="h4" className={classes.version}>1.0.4</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Search menu to open dictionary in a new tab</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Completion % viewable on comic's vocab list</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Confirmation popup for deleting vocab words</Typography>
                 </Grid>
