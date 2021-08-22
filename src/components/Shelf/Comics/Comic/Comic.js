@@ -50,6 +50,17 @@ const Comic = ({ comic }) => {
         }
     }
 
+    const getCompletion = () => {
+        var count = 0;
+        for (var i = 0; i < comicInfo.images.length; i++) {
+            if (comicInfo.images[i].done) {
+                count++;
+            }
+        }
+        var answer = (count / comicInfo.images.length) * 100;
+        return Math.round(answer * 100) / 100;
+    }
+
     return (
         <Container className={classes.outerContainer} maxWidth={false} disableGutters>
             <Typography noWrap className={classes.titleText} variant="h6">{comicInfo.name}</Typography>
@@ -87,6 +98,7 @@ const Comic = ({ comic }) => {
             <Popover open={vocabAnchor ? true : false} anchorEl={vocabAnchor} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} transformOrigin={{vertical: 'top', horizontal: 'left'}} onClose={toggleVocabPopup}>
                 <Box p={2}>
                     <Typography variant="body1">Vocab #: {vocab.length}</Typography>
+                    <Typography variant="body1">Completion %: {getCompletion()}</Typography>
                     {vocab.map((word) => {
                         return (
                             <Typography key={word._id} variant="body1">{word.term}</Typography>
