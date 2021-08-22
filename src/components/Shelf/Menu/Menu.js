@@ -5,6 +5,7 @@ import Upload from './Upload/Upload.js';
 import Vocab from './Vocab/Vocab.js';
 import Sort from './Sort/Sort.js';
 import Pages from './Pages/Pages.js';
+import Dictionary from './Dictionary/Dictionary.js';
 import ImageData from './ImageData/ImageData.js';
 import Changelog from './Changelog/Changelog.js';
 import Logout from './Logout/Logout.js';
@@ -13,6 +14,7 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ImageIcon from '@material-ui/icons/Image';
 import PublishIcon from '@material-ui/icons/Publish';
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import FindInPageIcon from '@material-ui/icons/FindInPage';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import CallSplitIcon from '@material-ui/icons/CallSplit';
@@ -57,6 +59,14 @@ const Menu = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Pages />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion expanded={expanded === 'dictionary'} onChange={handleChange('dictionary')}>
+                <AccordionSummary>
+                    <FindInPageIcon />&nbsp;Dictionary
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Dictionary />
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'sort'} onChange={handleChange('sort')}>
