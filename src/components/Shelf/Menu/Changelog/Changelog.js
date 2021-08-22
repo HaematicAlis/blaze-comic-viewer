@@ -11,6 +11,11 @@ const Changelog = () => {
         <Container maxWidth={false}>
             <Grid container direction="column" align="left">
                 <Grid item>
+                    <Typography variant="h4" className={classes.version}>1.0.4</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Completion % viewable on comic's vocab list</Typography>
+                    <Typography variant="body1" className={classes.bullet}>• Confirmation popup for deleting vocab words</Typography>
+                </Grid>
+                <Grid item>
                     <Typography variant="h4" className={classes.version}>1.0.3</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Comic page menu looks prettier</Typography>
                     <Typography variant="body1" className={classes.bullet}>• Default red check means page is not done yet</Typography>

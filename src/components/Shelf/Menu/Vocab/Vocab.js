@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ClearIcon from '@material-ui/icons/Clear';
 import { getAllVocab, addVocab, deleteVocab } from '../../../../actions/vocab.js';
 
-import { Container, Typography, Grid, Button, TextField, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
+import { Container, Typography, Grid, Button, TextField, Accordion, AccordionSummary, AccordionDetails, Popover, IconButton, Box } from '@material-ui/core';
 import useStyles from './styles.js';
 
 const Vocab = () => {
     const [vocabInfo, setVocabInfo] = useState({ term: '', gloss: '', reading: '', notes: '' });
+    const [deleteAnchor, setDeleteAnchor] = useState(null);
     const [expanded, setExpanded] = useState(false);
     const selected = useSelector((state) => state.selected);
     const page = useSelector((state) => state.page);
@@ -22,6 +24,10 @@ const Vocab = () => {
             dispatch(getAllVocab(selected._id));
         }
     }, [dispatch, selected, page]);
+
+    const toggleDeletePopup = (event) => {
+        deleteAnchor ? setDeleteAnchor(null) : setDeleteAnchor(event.currentTarget);
+    }
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
@@ -72,9 +78,16 @@ const Vocab = () => {
                                                     <TextField size="small" label="Notes" value={word.notes} color="secondary" />
                                                     </Grid>
                                                     <Grid item>
-                                                        <Button size="small" color="secondary" onClick={() => doDeleteVocab(word._id)}>Delete</Button>
+                                                        <IconButton size="small" color="secondary" onClick={toggleDeletePopup}><ClearIcon /></IconButton>
                                                     </Grid>
                                                 </Grid>
+                                                <Popover open={deleteAnchor ? true : false} anchorEl={deleteAnchor} anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} transformOrigin={{vertical: 'top', horizontal: 'left'}} onClose={toggleDeletePopup}>
+                                                    <Box p={2}>
+                                                        <Typography variant="body1">Delete vocab?</Typography>
+                                                        <Button color="secondary" size="small" onClick={() => doDeleteVocab(word._id)}>Yes</Button>
+                                                        <Button color="secondary" size="small" onClick={toggleDeletePopup}>No</Button>
+                                                    </Box>
+                                                </Popover>
                                             </AccordionDetails>
                                         </Accordion>
                                     );
